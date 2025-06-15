@@ -87,6 +87,16 @@ mamba activate pygis_base
 
 Your prompt should now show (pygis_base) at the beginning of each line.
 
+# Install ipykernel to make your environment available in Jupyter
+conda install ipykernel
+
+# Register your current environment with Jupyter
+python -m ipykernel install --user --name pygis_base --display-name "Python (pygis_base)“
+
+# Then restart Jupyter Lab
+jupyter lab
+
+
 ===============================================================================
 
 Step 7: Test Installation
