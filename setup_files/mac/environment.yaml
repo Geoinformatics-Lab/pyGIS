@@ -1,0 +1,65 @@
+name: pygis_base
+channels:
+  - conda-forge
+dependencies:
+  # Core Python
+  - python=3.10
+  
+  # System dependencies
+  - gdal=3.6.2
+  - proj=9.1.0
+  - geos=3.11.1
+  - libspatialindex
+  - boost-cpp
+  
+  # Core scientific stack
+  - numpy=1.24.3
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  
+  # Geospatial core
+  - geopandas
+  - rasterio
+  - shapely
+  - pyproj
+  - fiona
+  
+  # Geospatial extras
+  - contextily
+  - folium
+  - osmnx
+  - earthpy
+  - mapclassify
+  - geoplot
+  - geowombat=2.1.22
+  
+  # Data formats
+  - h5py
+  - netcdf4
+  - h5netcdf
+  - xarray
+  
+  # Visualization
+  - plotly
+  
+  # Jupyter
+  - jupyter
+  - jupyterlab=4.4.3
+  - ipywidgets
+  
+  # Pip dependencies
+  - pip
+  - pip:
+    - sympy==1.14.0
+    - numpy-groupies==0.11.2
+    - jupyter-book==1.0.4
+    - geojson==3.2.0
+    - dask-geopandas==0.4.3
+    - pykrige==1.7.2
+    - cenpy==1.0.1
+    - census==0.8.24
+    - us==3.2.0
+    - sklearn-xarray==0.4.0
