@@ -1,34 +1,78 @@
-# PyGIS&trade; - Open Source Spatial Programming & Remote Sensing
+# pyGIS - Geoinformatics Lab Fork
 
-The globe is now digital. Everything from monitoring deforestation, predicting wildfires, to training autonomous vehicles and tracking uprisings on social media requires you to understand how to leverage location data. This class will introduce you to the methods required for spatial programming. We focus on building your core programming techniques while helping you: leverage spatial data from OSM and the US Census, use satellite imagery, track land-use change, and track social distance during a pandemic, amongst others. We will leverage open source Python packages such as GeoPandas, Rasterio, Sklearn, and Geowombat to better understand our world and help predict its future. Some Python programming experience is required, however the material will be presented in a student-friendly manner and will focus on real-world application. 
+This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS), enhanced with organized setup instructions and Jupyter notebooks for geospatial analysis and GIS operations in Python.
 
-*Under Development - Please Contribute*
-[See the current book here](https://mmann1123.github.io/pyGIS/docs/a_intro.html)
+## Getting Started
 
-## Usage
+### Step 1: Choose Your Operating System
 
-### Building the book
+Navigate to the appropriate folder in `setup_files/` based on your operating system:
 
-If you'd like to develop on and build the PyGIS - Open Source Spatial Programming & Remote Sensing book, you should:
+- **Windows Users**: Go to `setup_files/windows/`
+- **Linux Users**: Go to `setup_files/linux/`
+- **macOS Users**: Go to `setup_files/macos/`
 
-- Clone this repository and run
-- Run `pip install -r requirements.txt` (it is recommended you do this within a virtual environment)
-- Navigate to `./pyGIS/`
-- (Recommended) Remove the existing `/pyGIS/pygis/_build/` directory
-- Run `jupyter-book build pygis`
+### Step 2: Follow Setup Instructions
 
-A fully-rendered HTML version of the book will be built in `/pyGIS/pygis/_build/html/index.html `.
+Each operating system folder contains specific setup instructions and dependency installation guides:
 
-## Contributors
+#### Windows
+- Review the `Pictorial_manual_PyGIS_Windows.pdf` for visual installation guide
+- Follow instructions in `windows_install_pygis_base.txt`
 
-We welcome and recognize all contributions. You can see a list of current contributors in the [contributors tab](https://github.com/mmann1123/pygis/graphs/contributors).
+#### Linux & macOS
+- Follow the README.md file in your respective OS folder
+- Use the provided `environment.yml` file to create the conda environment
 
-## Credits
+### Step 3: Launch Jupyter Lab
 
-This project is created using the excellent open source [Jupyter Book project](https://jupyterbook.org/) and the [executablebooks/cookiecutter-jupyter-book template](https://github.com/executablebooks/cookiecutter-jupyter-book).
+After setting up your environment following the OS-specific instructions, launch Jupyter Lab:
 
-## Reference & Citation
+```
+jupyter lab
+```
 
-Michael Mann, Steven Chao, Christophe Van Neste, Roger Lew, & Mark Isken. (2023). mmann1123/pyGIS: Clearer Satellites (v1.2.1). Zenodo. https://doi.org/10.5281/zenodo.8215141
+### Step 4: Explore the Notebooks
 
-<a href="https://zenodo.org/badge/latestdoi/344683467"><img src="https://zenodo.org/badge/344683467.svg" alt="DOI"></a>
+Navigate to the `pyGIS_Notebooks/` folder within Jupyter Lab to access the available notebooks. These notebooks contain:
+
+- GIS tutorials and examples
+- Geospatial data analysis workflows
+- Python-based GIS operations
+- Interactive mapping examples
+
+## Features
+
+- **Cross-platform support**: Setup instructions for Windows, Linux, and macOS
+- **Organized notebooks**: All Jupyter notebooks are centralized in the `pyGIS_Notebooks/` folder
+- **Comprehensive setup**: Detailed installation guides for each operating system
+- **Ready-to-use environment**: Pre-configured conda environments for seamless setup
+
+## Contributing
+
+This is a fork of the original pyGIS repository. For contributions:
+
+1. Fork this repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## Original Repository
+
+This repository is forked from [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS). Please refer to the original repository for the core pyGIS functionality and documentation.
+
+## License
+
+Please refer to the original repository's license terms.
+
+## Support
+
+For setup issues:
+- Check the README files in the appropriate `setup_files/` folder
+- Refer to the pictorial manual for Windows users
+- Create an issue in this repository for additional support
+
+## Acknowledgments
+
+- Original pyGIS repository by [mmann1123](https://github.com/mmann1123)
+- Geoinformatics Lab for organizing and enhancing the setup process
