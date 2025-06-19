@@ -1,5 +1,0 @@
-{
-    "python.pythonPath": "/mnt/space/miniconda3/envs/pygisbook/bin/python",
-    "restructuredtext.confPath": "/home/mmann1123/Documents/github/geowombat/doc/source",
-    "python.formatting.provider": "black"
-}
