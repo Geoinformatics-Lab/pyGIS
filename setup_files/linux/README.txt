@@ -64,7 +64,7 @@ Navigate to the linux setup folder:
 cd pyGIS-main/setup_files/linux
 
 Create environment from YAML file:
-mamba env create -f environment.yml
+mamba env create -f environment.yaml
 
 Press "y"; to proceed installation
 
