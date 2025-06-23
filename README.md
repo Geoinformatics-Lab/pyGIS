@@ -1,4 +1,4 @@
-# pyGIS - Geoinformatics Lab Fork
+# pyGILE - Python Geoinformatics Lab Environment
 
 This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS), enhanced with organized setup instructions and Jupyter notebooks for geospatial analysis and GIS operations in Python.
 
@@ -6,19 +6,19 @@ This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGI
 
 ### Step 1: Choose Your Operating System
 
-Navigate to the appropriate folder in `setup_files/` based on your operating system:
+Navigate to the appropriate folder in `environments/` based on your operating system:
 
-- **Windows Users**: Go to `setup_files/windows/`
-- **Linux Users**: Go to `setup_files/linux/`
-- **macOS Users**: Go to `setup_files/macos/`
+- **Windows Users**: Go to `environments/windows/`
+- **Linux Users**: Go to `environments/linux/`
+- **macOS Users**: Go to `environments/macos/`
 
 ### Step 2: Follow Setup Instructions
 
 Each operating system folder contains specific setup instructions and dependency installation guides:
 
 #### Windows
-- Review the `Pictorial_manual_PyGIS_Windows.pdf` for visual installation guide
-- Follow instructions in `windows_install_pygis_base.txt`
+- Review the `Environment_Install_Windows.pdf` for visual installation guide
+- Follow instructions in `windows_install_pygile_base.txt`
 
 #### Linux & macOS
 - Follow the README.md file in your respective OS folder
@@ -34,7 +34,7 @@ jupyter lab
 
 ### Step 4: Explore the Notebooks
 
-Navigate to the `pyGIS_Notebooks/` folder within Jupyter Lab to access the available notebooks. These notebooks contain:
+Navigate to the `pyGILE_Notebooks/` folder within Jupyter Lab to access the available notebooks. These notebooks contain:
 
 - GIS tutorials and examples
 - Geospatial data analysis workflows
@@ -68,7 +68,7 @@ Please refer to the original repository's license terms.
 ## Support
 
 For setup issues:
-- Check the README files in the appropriate `setup_files/` folder
+- Check the README files in the appropriate `environments/` folder
 - Refer to the pictorial manual for Windows users
 - Create an issue in this repository for additional support
 
