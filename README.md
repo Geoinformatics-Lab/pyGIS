@@ -10,7 +10,7 @@ Navigate to the appropriate folder in `environments/` based on your operating sy
 
 - **Windows Users**: Go to `environments/windows/`
 - **Linux Users**: Go to `environments/linux/`
-- **macOS Users**: Go to `environments/macos/`
+- **macOS Users**: Go to `environments/mac/`
 
 ### Step 2: Follow Setup Instructions
 
