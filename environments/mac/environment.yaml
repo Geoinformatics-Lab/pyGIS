@@ -1,4 +1,4 @@
-name: pyGILE_base
+name: pygile_base
 channels:
   - conda-forge
 dependencies:

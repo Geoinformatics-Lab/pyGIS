@@ -1,4 +1,4 @@
-PyGILE Setup for Linux
+Pygile Environment Installation for Linux
 
 ===============================================================================
 
@@ -7,6 +7,7 @@ Step 1: Download and Extract Repository
 Go to: https://github.com/Geoinformatics-Lab/PyGILE
 
 Click green "Code" button -> "Download ZIP"
+
 Extract the ZIP file to your home directory
 
 You will get a folder named "PyGILE-main"
@@ -52,6 +53,7 @@ You should see a version number like "mamba 2.1.1"
 ===============================================================================
 
 Step 5: Create PyGILE Environment
+
 Navigate to the linux setup folder:
 
 cd PyGILE-main/environments/linux

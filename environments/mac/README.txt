@@ -1,11 +1,14 @@
-# PyGIS Setup for macOS
+# Pygile Environment Installation setup for macOS
 
 
 ## Step 1: Download and Extract Repository
 
 Go to: https://github.com/Geoinformatics-Lab/pyGILE
+
 Click green "Code" button -> "Download ZIP"
+
 Extract the ZIP file to your home directory
+
 You will get a folder named "pyGILE-main"
 
 ===============================================================================
@@ -106,7 +109,7 @@ You should see a version number like "mamba 2.1.1"
 
 ===============================================================================
 
-## Step 5: Create PyGILE_base Environment
+## Step 5: Create Pygile_base Environment
 
 Navigate to the mac setup folder:
 
@@ -139,7 +142,7 @@ eval "$(mamba shell hook --shell bash)"
 *Note: Replace "bash" with "zsh" if you're using zsh*
 
 
-Then activate the PyGILE_base environment:
+Then activate the Pygile_base environment:
 
 mamba activate pygile_base
 
@@ -162,7 +165,7 @@ You should see: "All packages working!"
 
 ## Daily Usage
 
-Every time you want to use PyGILE_base:
+Every time you want to use Pygile_base:
 
 1. Open Terminal (Cmd+Space, type "Terminal", press Enter)
 
