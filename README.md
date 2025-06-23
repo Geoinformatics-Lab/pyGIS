@@ -22,7 +22,7 @@ Each operating system folder contains specific setup instructions and dependency
 
 #### Linux & macOS
 - Follow the README.md file in your respective OS folder
-- Use the provided `environment.yml` file to create the conda environment
+- Use the provided `environment.yaml` file to create the conda environment
 
 ### Step 3: Launch Jupyter Lab
 
