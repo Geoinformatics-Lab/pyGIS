@@ -1,4 +1,4 @@
-name: pygis_base
+name: pyGILE_base
 channels:
   - conda-forge
 dependencies:

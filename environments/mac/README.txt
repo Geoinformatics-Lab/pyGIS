@@ -3,10 +3,10 @@
 
 ## Step 1: Download and Extract Repository
 
-Go to: https://github.com/Geoinformatics-Lab/pyGIS
+Go to: https://github.com/Geoinformatics-Lab/pyGILE
 Click green "Code" button -> "Download ZIP"
 Extract the ZIP file to your home directory
-You will get a folder named "pyGIS-main"
+You will get a folder named "pyGILE-main"
 
 ===============================================================================
 
@@ -15,8 +15,11 @@ You will get a folder named "pyGIS-main"
 **EASIEST METHOD - Use your browser:**
 
 1. Go to: https://github.com/conda-forge/miniforge/releases/latest/
+
 2. **For Intel Macs:** Click on `Miniforge3-MacOSX-x86_64.sh` to download
+
 3. **For Apple Silicon Macs (M1/M2/M3):** Click on `Miniforge3-MacOSX-arm64.sh` to download
+
 4. The file will download to your Downloads folder
 
 **To check which Mac you have:** Click Apple menu → About This Mac
@@ -24,6 +27,7 @@ You will get a folder named "pyGIS-main"
 - If you see "Apple M1", "Apple M2", or "Apple M3" → use arm64 version
 
 **Alternative (Terminal method):**
+
 If you prefer using Terminal and have curl:
 ```bash
 # For Intel Macs:
@@ -39,7 +43,7 @@ curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Min
 
 Open Terminal (Cmd+Space, type "Terminal", press Enter)
 
-Navigate to where you downloaded the file ( example: Downloads folder):
+Navigate to where you downloaded the file or look for pc defaults downloads folder ( Example: Downloads folder):
 
 cd ~/Downloads
 
@@ -102,12 +106,12 @@ You should see a version number like "mamba 2.1.1"
 
 ===============================================================================
 
-## Step 5: Create PyGIS Environment
+## Step 5: Create PyGILE_base Environment
 
-Navigate to the mac setup folder 
+Navigate to the mac setup folder:
 
 
-cd pyGIS-main/setup_files/mac
+cd pyGILE-main/environments/mac
 
 
 Create environment from YAML file:
@@ -135,22 +139,12 @@ eval "$(mamba shell hook --shell bash)"
 *Note: Replace "bash" with "zsh" if you're using zsh*
 
 
-Then activate the PyGIS environment:
+Then activate the PyGILE_base environment:
 
-mamba activate pygis_base
+mamba activate pygile_base
 
 
-Your prompt should now show `(pygis_base)` at the beginning of each line.
-
-# Install ipykernel to make your environment available in Jupyter
-conda install ipykernel
-
-# Register your current environment with Jupyter
-python -m ipykernel install --user --name pygis_base --display-name "Python (pygis_base)“
-
-# Then restart Jupyter Lab
-jupyter lab
-
+Your prompt should now show `(pygile_base)` at the beginning of each line.
 
 ===============================================================================
 
@@ -166,38 +160,17 @@ You should see: "All packages working!"
 
 ===============================================================================
 
-## Step 8: Navigate to Learning Materials
-
-Go back to the main repository folder:
-
-cd ../..  # This takes you to pyGIS-main/
-
-Now you're ready to start learning!
-
-RECOMMENDED FIRST STEP: Run the organization notebook:
-jupyter lab FOLDER_Management.ipynb
-
-This will organize all notebooks into structured folders for easier navigation.
-
-===============================================================================
 ## Daily Usage
 
-Every time you want to use PyGIS:
+Every time you want to use PyGILE_base:
 
 1. Open Terminal (Cmd+Space, type "Terminal", press Enter)
-2. `mamba activate pygis_base`
+
+2. `mamba activate pygile_base`
+
 3. `jupyter lab`
-4. FIRST TIME: Run "folder_management.ipynb" to organize notebooks
-5. Then open any .ipynb notebook and start learning!
 
-===============================================================================
-
-## Daily Workflow Summary:
-
-mamba activate pygis_base
-cd pyGIS-main
-jupyter lab
-
+4. cd into pyGILE-main folder; inside there is folder called "pyGILE_notebooks" open any notebooks and interact!!
 
 ===============================================================================
 

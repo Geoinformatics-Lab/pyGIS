@@ -4,12 +4,12 @@ chcp 65001 >nul 2>&1
 
 echo.
 echo ============================================================
-echo      PYGIS BASE ENVIRONMENT INSTALLER
+echo      PYGILE BASE ENVIRONMENT INSTALLER
 echo ============================================================
 echo.
 
-set LOGFILE=pygis_installation.log
-set ERRORLOG=pygis_errors.log
+set LOGFILE=pygile_installation.log
+set ERRORLOG=pygile_errors.log
 set ERROR_COUNT=0
 
 echo Starting installation at %date% %time%
@@ -66,14 +66,14 @@ REM ============================================================
 REM Remove existing environment
 REM ============================================================
 echo [2/20] Cleaning up existing environment...
-"%INSTALLER%" env remove -n pygis_base -y >nul 2>&1
+"%INSTALLER%" env remove -n pygile_base -y >nul 2>&1
 echo Environment cleanup completed
 
 REM ============================================================
 REM Create base environment
 REM ============================================================
-echo [3/20] Creating pygis_base environment...
-"%INSTALLER%" create -n pygis_base python=3.10 -c conda-forge -y >> %LOGFILE% 2>&1
+echo [3/20] Creating pygile_base environment...
+"%INSTALLER%" create -n pygile_base python=3.10 -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo ERROR: Failed to create base environment
     echo CRITICAL: Base environment creation failed >> %ERRORLOG%
@@ -87,7 +87,7 @@ REM Install packages step by step
 REM ============================================================
 
 echo [4/20] Installing core geospatial libraries...
-"%INSTALLER%" install -n pygis_base gdal proj geos libspatialindex fiona shapely pyproj -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base gdal proj geos libspatialindex fiona shapely pyproj -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Core geospatial install had errors
     echo FAILED: Core geospatial >> %ERRORLOG%
@@ -97,7 +97,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [5/20] Installing scientific computing...
-"%INSTALLER%" install -n pygis_base numpy pandas scipy matplotlib seaborn scikit-learn -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base numpy pandas scipy matplotlib seaborn scikit-learn -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Scientific computing install had errors
     echo FAILED: Scientific computing >> %ERRORLOG%
@@ -107,7 +107,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [6/20] Installing GeoPandas and Rasterio...
-"%INSTALLER%" install -n pygis_base geopandas rasterio -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base geopandas rasterio -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: GeoPandas/Rasterio install had errors
     echo FAILED: GeoPandas Rasterio >> %ERRORLOG%
@@ -117,7 +117,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [7/20] Installing data format libraries...
-"%INSTALLER%" install -n pygis_base xarray netcdf4 h5py h5netcdf zarr -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base xarray netcdf4 h5py h5netcdf zarr -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Data format libraries had errors
     echo FAILED: Data formats >> %ERRORLOG%
@@ -127,7 +127,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [8/20] Installing Jupyter ecosystem...
-"%INSTALLER%" install -n pygis_base jupyter jupyterlab ipywidgets -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base jupyter jupyterlab ipywidgets -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Jupyter install had errors
     echo FAILED: Jupyter >> %ERRORLOG%
@@ -137,7 +137,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [9/20] Installing visualization packages...
-"%INSTALLER%" install -n pygis_base plotly bokeh folium contextily mapclassify -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base plotly bokeh folium contextily mapclassify -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Visualization packages had errors
     echo FAILED: Visualization >> %ERRORLOG%
@@ -147,7 +147,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [10/20] Installing geospatial analysis tools...
-"%INSTALLER%" install -n pygis_base osmnx earthpy geoplot -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base osmnx earthpy geoplot -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Geospatial analysis tools had errors
     echo FAILED: Geospatial analysis >> %ERRORLOG%
@@ -157,7 +157,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [11/20] Installing image processing...
-"%INSTALLER%" install -n pygis_base scikit-image imageio-ffmpeg tifffile -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base scikit-image imageio-ffmpeg tifffile -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Image processing had errors
     echo FAILED: Image processing >> %ERRORLOG%
@@ -167,7 +167,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [12/20] Installing web mapping dependencies...
-"%INSTALLER%" install -n pygis_base localtileserver rio-cogeo rioxarray -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base localtileserver rio-cogeo rioxarray -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Web mapping dependencies had errors
     echo FAILED: Web mapping deps >> %ERRORLOG%
@@ -177,7 +177,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [13/20] Installing interactive mapping...
-"%INSTALLER%" install -n pygis_base ipyleaflet owslib -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base ipyleaflet owslib -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Interactive mapping had errors
     echo FAILED: Interactive mapping >> %ERRORLOG%
@@ -187,7 +187,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [14/20] Installing geemap and leafmap...
-"%INSTALLER%" install -n pygis_base geemap leafmap -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base geemap leafmap -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: geemap/leafmap install had errors
     echo FAILED: geemap leafmap >> %ERRORLOG%
@@ -197,7 +197,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [15/20] Installing optional packages (census, pykrige)...
-"%INSTALLER%" install -n pygis_base census us pykrige palettable geojson -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base census us pykrige palettable geojson -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Some optional packages failed - continuing
     echo OPTIONAL FAILED: census pykrige >> %ERRORLOG%
@@ -206,7 +206,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [16/20] Installing cloud tools (optional)...
-"%INSTALLER%" install -n pygis_base pystac stackstac planetary-computer -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base pystac stackstac planetary-computer -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Cloud tools failed - continuing
     echo OPTIONAL FAILED: cloud tools >> %ERRORLOG%
@@ -215,10 +215,10 @@ if !errorlevel! neq 0 (
 )
 
 echo [17/20] Installing pygis meta-package...
-"%INSTALLER%" install -n pygis_base pygis -c conda-forge -y >> %LOGFILE% 2>&1
+"%INSTALLER%" install -n pygile_base pygis -c conda-forge -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo Conda failed, trying pip for pygis...
-    "%INSTALLER%" run -n pygis_base pip install pygis >> %LOGFILE% 2>&1
+    "%INSTALLER%" run -n pygile_base pip install pygis >> %LOGFILE% 2>&1
     if !errorlevel! neq 0 (
         echo INFO: pygis meta-package failed - continuing
         echo OPTIONAL FAILED: pygis >> %ERRORLOG%
@@ -230,7 +230,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [18/20] Installing Earth Engine API...
-"%INSTALLER%" run -n pygis_base pip install earthengine-api >> %LOGFILE% 2>&1
+"%INSTALLER%" run -n pygile_base pip install earthengine-api >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Earth Engine API failed - continuing
     echo OPTIONAL FAILED: earthengine-api >> %ERRORLOG%
@@ -239,7 +239,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [19/20] Installing additional pip packages...
-"%INSTALLER%" run -n pygis_base pip install sklearn_xarray geeaddons sankee >> %LOGFILE% 2>&1
+"%INSTALLER%" run -n pygile_base pip install sklearn_xarray geeaddons sankee >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Some additional packages failed - continuing
     echo OPTIONAL FAILED: additional pip packages >> %ERRORLOG%
@@ -248,7 +248,7 @@ if !errorlevel! neq 0 (
 )
 
 echo [20/20] Installing advanced optional packages...
-"%INSTALLER%" run -n pygis_base pip install overturemaps whiteboxgui >> %LOGFILE% 2>&1
+"%INSTALLER%" run -n pygile_base pip install overturemaps whiteboxgui >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Advanced packages failed - continuing
     echo OPTIONAL FAILED: advanced packages >> %ERRORLOG%
@@ -261,7 +261,7 @@ REM Verification
 REM ============================================================
 echo.
 echo Verifying core packages...
-"%INSTALLER%" run -n pygis_base python -c "import numpy, pandas, geopandas, rasterio, matplotlib; print('Core packages OK')" >> %LOGFILE% 2>&1
+"%INSTALLER%" run -n pygile_base python -c "import numpy, pandas, geopandas, rasterio, matplotlib; print('Core packages OK')" >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Core package verification failed
     echo VERIFY FAILED: Core packages >> %ERRORLOG%
@@ -285,10 +285,10 @@ if %ERROR_COUNT% equ 0 (
     echo.
     echo NEXT STEPS:
     echo 1. Open miniforge prompt
-    echo 2. Type: conda activate pygis_base
+    echo 2. Type: conda activate pygile_base
     echo 3. Type: jupyter lab
     echo.
-    echo Your PyGIS environment is ready!
+    echo Your PyGILE environment is ready!
 ) else (
     echo PARTIAL SUCCESS: Installation completed with %ERROR_COUNT% errors
     echo.
@@ -297,7 +297,7 @@ if %ERROR_COUNT% equ 0 (
     echo.
     echo NEXT STEPS:
     echo 1. Open miniforge prompt
-    echo 2. Type: conda activate pygis_base
+    echo 2. Type: conda activate pygile_base
     echo 3. Try manually installing failed packages if needed
     echo 4. Type: jupyter lab
     echo.
