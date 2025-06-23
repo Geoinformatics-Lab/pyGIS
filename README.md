@@ -17,7 +17,7 @@ Navigate to the appropriate folder in `environments/` based on your operating sy
 Each operating system folder contains specific setup instructions and dependency installation guides:
 
 #### Windows
-- Review the `Environment_Install_Windows.pdf` for visual installation guide
+- Review the `environment_install_windows.pdf` for visual installation guide
 - Follow instructions in `windows_install_pygile_base.txt`
 
 #### Linux & macOS
@@ -34,7 +34,7 @@ jupyter lab
 
 ### Step 4: Explore the Notebooks
 
-Navigate to the `pyGILE_Notebooks/` folder within Jupyter Lab to access the available notebooks. These notebooks contain:
+Navigate to the `pyGILE_notebooks/` folder within Jupyter Lab to access the available notebooks. These notebooks contain:
 
 - GIS tutorials and examples
 - Geospatial data analysis workflows
@@ -44,7 +44,7 @@ Navigate to the `pyGILE_Notebooks/` folder within Jupyter Lab to access the avai
 ## Features
 
 - **Cross-platform support**: Setup instructions for Windows, Linux, and macOS
-- **Organized notebooks**: All Jupyter notebooks are centralized in the `pyGIS_Notebooks/` folder
+- **Organized notebooks**: All Jupyter notebooks are centralized in the `pyGILE_notebooks/` folder
 - **Comprehensive setup**: Detailed installation guides for each operating system
 - **Ready-to-use environment**: Pre-configured conda environments for seamless setup
 
