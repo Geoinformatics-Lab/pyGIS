@@ -20,9 +20,13 @@ Each operating system folder contains specific setup instructions and dependency
 - Review the [environment_install_windows.pdf](environments/windows/environment_install_windows.pdf) for visual installation guide
 - Follow instructions in [windows_install_pygile_base.txt](environments/windows/windows_install_pygile_base.txt)
 
-#### Linux & macOS
-- Follow the [README.md](environments/linux/README.md) file in your respective OS folder ([Linux](environments/linux/) | [macOS](environments/mac/))
+#### Linux
+- Follow the [README.md](environments/linux/README.md) file in the Linux folder
 - Use the provided [environment.yaml](environments/linux/environment.yaml) file to create the conda environment
+
+#### macOS
+- Follow the [README.md](environments/mac/README.md) file in the macOS folder
+- Use the provided [environment.yaml](environments/mac/environment.yaml) file to create the conda environment
 
 ### Step 3: Launch Jupyter Lab
 
@@ -64,13 +68,6 @@ This repository is forked from [mmann1123/pyGIS](https://github.com/mmann1123/py
 ## License
 
 Please refer to the original repository's license terms.
-
-## Support
-
-For setup issues:
-- Check the README files in the appropriate [environments/](environments/) folder
-- Refer to the pictorial manual for Windows users
-- Create an issue in this repository for additional support
 
 ## Acknowledgments
 
