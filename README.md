@@ -8,21 +8,21 @@ This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGI
 
 Navigate to the appropriate folder in `environments/` based on your operating system:
 
-- **Windows Users**: Go to `environments/windows/`
-- **Linux Users**: Go to `environments/linux/`
-- **macOS Users**: Go to `environments/mac/`
+- **Windows Users**: Go to [environments/windows/](environments/windows/)
+- **Linux Users**: Go to [environments/linux/](environments/linux/)
+- **macOS Users**: Go to [environments/mac/](environments/mac/)
 
 ### Step 2: Follow Setup Instructions
 
 Each operating system folder contains specific setup instructions and dependency installation guides:
 
 #### Windows
-- Review the `environment_install_windows.pdf` for visual installation guide
-- Follow instructions in `windows_install_pygile_base.txt`
+- Review the [environment_install_windows.pdf](environments/windows/environment_install_windows.pdf) for visual installation guide
+- Follow instructions in [windows_install_pygile_base.txt](environments/windows/windows_install_pygile_base.txt)
 
 #### Linux & macOS
-- Follow the README.md file in your respective OS folder
-- Use the provided `environment.yaml` file to create the conda environment
+- Follow the [README.md](environments/linux/README.md) file in your respective OS folder ([Linux](environments/linux/) | [macOS](environments/mac/))
+- Use the provided [environment.yaml](environments/linux/environment.yaml) file to create the conda environment
 
 ### Step 3: Launch Jupyter Lab
 
@@ -34,7 +34,7 @@ jupyter lab
 
 ### Step 4: Explore the Notebooks
 
-Navigate to the `pyGILE_notebooks/` folder within Jupyter Lab to access the available notebooks. These notebooks contain:
+Navigate to the [pyGILE_notebooks/](pyGILE_notebooks/) folder within Jupyter Lab to access the available notebooks. These notebooks contain:
 
 - GIS tutorials and examples
 - Geospatial data analysis workflows
@@ -44,7 +44,7 @@ Navigate to the `pyGILE_notebooks/` folder within Jupyter Lab to access the avai
 ## Features
 
 - **Cross-platform support**: Setup instructions for Windows, Linux, and macOS
-- **Organized notebooks**: All Jupyter notebooks are centralized in the `pyGILE_notebooks/` folder
+- **Organized notebooks**: All Jupyter notebooks are centralized in the [pyGILE_notebooks/](pyGILE_notebooks/) folder
 - **Comprehensive setup**: Detailed installation guides for each operating system
 - **Ready-to-use environment**: Pre-configured conda environments for seamless setup
 
@@ -68,7 +68,7 @@ Please refer to the original repository's license terms.
 ## Support
 
 For setup issues:
-- Check the README files in the appropriate `environments/` folder
+- Check the README files in the appropriate [environments/](environments/) folder
 - Refer to the pictorial manual for Windows users
 - Create an issue in this repository for additional support
 
