@@ -1,4 +1,4 @@
-# pyGILE - Python GeoInformatics Lab Environment
+# PyGILE - Python GeoInformatics Lab Environment
 
 This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS), enhanced with organized setup instructions and Jupyter notebooks for geospatial analysis and GIS operations in Python.
 
