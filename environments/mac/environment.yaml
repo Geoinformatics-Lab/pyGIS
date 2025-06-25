@@ -36,6 +36,14 @@ dependencies:
   - geoplot
   - geowombat=2.1.22
   
+  # Geospatial analysis and parallel processing
+  - dask-geopandas=0.4.3
+  
+  # US Census and demographic data
+  - cenpy=1.0.1
+  - census=0.8.24
+  - us=3.2.0
+  
   # Data formats
   - h5py
   - netcdf4
@@ -57,9 +65,5 @@ dependencies:
     - numpy-groupies==0.11.2
     - jupyter-book==1.0.4
     - geojson==3.2.0
-    - dask-geopandas==0.4.3
     - pykrige==1.7.2
-    - cenpy==1.0.1
-    - census==0.8.24
-    - us==3.2.0
     - sklearn-xarray==0.4.0
