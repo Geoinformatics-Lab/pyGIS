@@ -64,6 +64,13 @@ if defined MAMBA_EXE (
 echo Found: %INSTALLER% >> %LOGFILE%
 
 REM ============================================================
+REM Clean conda cache to prevent compatibility issues
+REM ============================================================
+echo [1.5/30] Cleaning conda cache for fresh installation... [5%%]
+"%INSTALLER%" clean --all -y >nul 2>&1
+echo Cache cleaned for consistent package versions
+
+REM ============================================================
 REM Remove existing environment
 REM ============================================================
 echo [2/30] Cleaning up existing environment... [7%%]
