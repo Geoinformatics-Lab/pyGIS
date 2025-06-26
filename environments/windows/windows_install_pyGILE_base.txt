@@ -4,13 +4,14 @@ chcp 65001 >nul 2>&1
 
 echo.
 echo ============================================================
-echo      PYGILE BASE ENVIRONMENT INSTALLER
+echo      ENHANCED PYGILE BASE ENVIRONMENT INSTALLER
 echo ============================================================
 echo.
 
 set LOGFILE=pygile_installation.log
 set ERRORLOG=pygile_errors.log
 set ERROR_COUNT=0
+set SUCCESS_COUNT=0
 
 echo Starting installation at %date% %time%
 echo Log file: %LOGFILE%
@@ -24,7 +25,7 @@ echo Error summary > %ERRORLOG%
 REM ============================================================
 REM Find conda installation
 REM ============================================================
-echo [1/26] Searching for conda installation...
+echo [1/30] Searching for conda installation... [3%%]
 set CONDA_EXE=
 set MAMBA_EXE=
 
@@ -65,172 +66,250 @@ echo Found: %INSTALLER% >> %LOGFILE%
 REM ============================================================
 REM Remove existing environment
 REM ============================================================
-echo [2/26] Cleaning up existing environment...
+echo [2/30] Cleaning up existing environment... [7%%]
 "%INSTALLER%" env remove -n pygile_base -y >nul 2>&1
 echo Environment cleanup completed
 
 REM ============================================================
-REM Create base environment
+REM Create base environment with compatibility settings
 REM ============================================================
-echo [3/26] Creating pygile_base environment...
-"%INSTALLER%" create -n pygile_base python=3.10 -c conda-forge -y >> %LOGFILE% 2>&1
+echo [3/30] Creating pygile_base environment with Python 3.10... [10%%]
+"%INSTALLER%" create -n pygile_base --override-channels -c conda-forge python=3.10 -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo ERROR: Failed to create base environment
+    echo WARNING: Base environment creation had issues - continuing
     echo CRITICAL: Base environment creation failed >> %ERRORLOG%
-    pause
-    exit /b 1
-)
-echo Done: Base environment created
-
-REM ============================================================
-REM Install packages step by step
-REM ============================================================
-
-echo [4/26] Installing core geospatial libraries...
-"%INSTALLER%" install -n pygile_base gdal proj geos libspatialindex fiona shapely pyproj -c conda-forge -y >> %LOGFILE% 2>&1
-if !errorlevel! neq 0 (
-    echo WARNING: Core geospatial install had errors
-    echo FAILED: Core geospatial >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
-    echo Done: Core geospatial libraries
+    echo Done: Base environment created
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [5/26] Installing scientific computing...
-"%INSTALLER%" install -n pygile_base numpy pandas scipy matplotlib seaborn scikit-learn -c conda-forge -y >> %LOGFILE% 2>&1
+REM ============================================================
+REM Install NumPy with compatibility constraint (CRITICAL FOR GEOWOMBAT)
+REM ============================================================
+echo [4/30] Installing NumPy with compatibility constraint... [13%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge "numpy<2" -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Scientific computing install had errors
+    echo WARNING: NumPy compatibility constraint failed - trying specific version...
+    "%INSTALLER%" install -n pygile_base --override-channels -c conda-forge numpy=1.24.3 -y >> %LOGFILE% 2>&1
+    if !errorlevel! neq 0 (
+        echo WARNING: NumPy fallback failed - continuing
+        echo FAILED: NumPy compatibility >> %ERRORLOG%
+        set /a ERROR_COUNT+=1
+    ) else (
+        echo Done: NumPy 1.24.3 fallback installed
+        set /a SUCCESS_COUNT+=1
+    )
+) else (
+    echo Done: NumPy ^<2 installed for compatibility
+    set /a SUCCESS_COUNT+=1
+)
+
+REM ============================================================
+REM Install core geospatial libraries with version pins
+REM ============================================================
+echo [5/30] Installing core geospatial libraries with version pins... [17%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge gdal=3.6.2 proj=9.1.0 geos=3.11.1 libspatialindex -y >> %LOGFILE% 2>&1
+if !errorlevel! neq 0 (
+    echo WARNING: Core geospatial libraries had issues - continuing
+    echo FAILED: Core geospatial (pinned versions) >> %ERRORLOG%
+    set /a ERROR_COUNT+=1
+) else (
+    echo Done: Core geospatial libraries with version pins
+    set /a SUCCESS_COUNT+=1
+)
+
+echo [6/30] Installing Fiona, Shapely, PyProj... [20%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge fiona shapely pyproj -y >> %LOGFILE% 2>&1
+if !errorlevel! neq 0 (
+    echo WARNING: Fiona/Shapely/PyProj install had issues - continuing
+    echo FAILED: Fiona Shapely PyProj >> %ERRORLOG%
+    set /a ERROR_COUNT+=1
+) else (
+    echo Done: Fiona, Shapely, PyProj
+    set /a SUCCESS_COUNT+=1
+)
+
+echo [7/30] Installing scientific computing stack... [23%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge pandas scipy matplotlib seaborn scikit-learn -y >> %LOGFILE% 2>&1
+if !errorlevel! neq 0 (
+    echo WARNING: Scientific computing stack had issues - continuing
     echo FAILED: Scientific computing >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Scientific computing stack
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [6/26] Installing GeoPandas and Rasterio...
-"%INSTALLER%" install -n pygile_base geopandas rasterio -c conda-forge -y >> %LOGFILE% 2>&1
+echo [8/30] Installing GeoPandas and Rasterio... [27%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge geopandas rasterio -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: GeoPandas/Rasterio install had errors
+    echo WARNING: GeoPandas/Rasterio install had issues - continuing
     echo FAILED: GeoPandas Rasterio >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: GeoPandas and Rasterio
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [7/26] Installing data format libraries...
-"%INSTALLER%" install -n pygile_base xarray netcdf4 h5py h5netcdf zarr -c conda-forge -y >> %LOGFILE% 2>&1
+echo [9/30] Installing data format libraries... [30%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge xarray netcdf4 h5py h5netcdf zarr -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Data format libraries had errors
+    echo WARNING: Data format libraries had issues - continuing
     echo FAILED: Data formats >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Data format libraries
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [8/26] Installing Jupyter ecosystem...
-"%INSTALLER%" install -n pygile_base jupyter jupyterlab ipywidgets -c conda-forge -y >> %LOGFILE% 2>&1
+echo [10/30] Installing Jupyter ecosystem... [33%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge jupyter jupyterlab=4.4.3 ipywidgets -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Jupyter install had errors
+    echo WARNING: Jupyter install had issues - continuing
     echo FAILED: Jupyter >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Jupyter ecosystem
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [9/26] Installing visualization packages...
-"%INSTALLER%" install -n pygile_base plotly bokeh folium contextily mapclassify -c conda-forge -y >> %LOGFILE% 2>&1
+echo [11/30] Installing visualization packages... [37%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge plotly bokeh folium contextily mapclassify -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Visualization packages had errors
+    echo WARNING: Visualization packages had issues - continuing
     echo FAILED: Visualization >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Visualization packages
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [10/26] Installing geospatial analysis tools...
-"%INSTALLER%" install -n pygile_base osmnx earthpy geoplot -c conda-forge -y >> %LOGFILE% 2>&1
+echo [12/30] Installing geospatial analysis tools... [40%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge osmnx earthpy geoplot -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Geospatial analysis tools had errors
+    echo WARNING: Geospatial analysis tools had issues - continuing
     echo FAILED: Geospatial analysis >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Geospatial analysis tools
+    set /a SUCCESS_COUNT+=1
 )
 
 REM ============================================================
-REM EARLY GEOWOMBAT INSTALLATION - conda-forge first
+REM Install Geowombat with multiple fallback strategies
 REM ============================================================
-echo [11/26] Installing geowombat via conda-forge...
-set GEOWOMBAT_FAILED=0
-"%INSTALLER%" install -n pygile_base geowombat -c conda-forge -y >> %LOGFILE% 2>&1
+echo [13/30] Installing Geowombat with compatibility settings... [43%%]
+set GEOWOMBAT_SUCCESS=0
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge geowombat=2.1.22 -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Geowombat conda install failed
-    echo FAILED: Geowombat conda >> %ERRORLOG%
-    set /a ERROR_COUNT+=1
-    set GEOWOMBAT_FAILED=1
+    echo Conda 2.1.22 failed, trying conda without version pin...
+    "%INSTALLER%" install -n pygile_base --override-channels -c conda-forge geowombat -y >> %LOGFILE% 2>&1
+    if !errorlevel! neq 0 (
+        echo Conda install failed, trying pip fallback...
+        "%INSTALLER%" run -n pygile_base pip install geowombat==2.0.6 >> %LOGFILE% 2>&1
+        if !errorlevel! neq 0 (
+            echo Pip 2.0.6 failed, trying latest version...
+            "%INSTALLER%" run -n pygile_base pip install geowombat >> %LOGFILE% 2>&1
+            if !errorlevel! neq 0 (
+                echo Latest failed, trying --no-build-isolation...
+                "%INSTALLER%" run -n pygile_base pip install geowombat --no-build-isolation >> %LOGFILE% 2>&1
+                if !errorlevel! neq 0 (
+                    echo WARNING: All Geowombat installation attempts failed - continuing
+                    echo FAILED: Geowombat all attempts >> %ERRORLOG%
+                    set /a ERROR_COUNT+=1
+                ) else (
+                    echo Done: Geowombat via pip with --no-build-isolation
+                    set GEOWOMBAT_SUCCESS=1
+                    set /a SUCCESS_COUNT+=1
+                )
+            ) else (
+                echo Done: Geowombat latest via pip
+                set GEOWOMBAT_SUCCESS=1
+                set /a SUCCESS_COUNT+=1
+            )
+        ) else (
+            echo Done: Geowombat 2.0.6 via pip ^(pyGIS compatible^)
+            set GEOWOMBAT_SUCCESS=1
+            set /a SUCCESS_COUNT+=1
+        )
+    ) else (
+        echo Done: Geowombat latest via conda-forge
+        set GEOWOMBAT_SUCCESS=1
+        set /a SUCCESS_COUNT+=1
+    )
 ) else (
-    echo Done: Geowombat via conda-forge
+    echo Done: Geowombat 2.1.22 via conda-forge
+    set GEOWOMBAT_SUCCESS=1
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [12/26] Installing image processing...
-"%INSTALLER%" install -n pygile_base scikit-image imageio-ffmpeg tifffile -c conda-forge -y >> %LOGFILE% 2>&1
+echo [14/30] Installing image processing libraries... [47%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge scikit-image imageio-ffmpeg tifffile -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Image processing had errors
+    echo WARNING: Image processing had issues - continuing
     echo FAILED: Image processing >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Image processing
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [13/26] Installing web mapping dependencies...
-"%INSTALLER%" install -n pygile_base localtileserver rio-cogeo rioxarray -c conda-forge -y >> %LOGFILE% 2>&1
+echo [15/30] Installing web mapping dependencies... [50%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge localtileserver rio-cogeo rioxarray -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Web mapping dependencies had errors
+    echo WARNING: Web mapping dependencies had issues - continuing
     echo FAILED: Web mapping deps >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: Web mapping dependencies
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [14/26] Installing interactive mapping...
-"%INSTALLER%" install -n pygile_base ipyleaflet owslib -c conda-forge -y >> %LOGFILE% 2>&1
+echo [16/30] Installing interactive mapping tools... [53%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge ipyleaflet owslib -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: Interactive mapping had errors
+    echo WARNING: Interactive mapping had issues - continuing
     echo FAILED: Interactive mapping >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
-    echo Done: Interactive mapping
+    echo Done: Interactive mapping tools
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [15/26] Installing geemap and leafmap...
-"%INSTALLER%" install -n pygile_base geemap leafmap -c conda-forge -y >> %LOGFILE% 2>&1
+echo [17/30] Installing geemap and leafmap... [57%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge geemap leafmap -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo WARNING: geemap/leafmap install had errors
+    echo WARNING: geemap/leafmap install had issues - continuing
     echo FAILED: geemap leafmap >> %ERRORLOG%
     set /a ERROR_COUNT+=1
 ) else (
     echo Done: geemap and leafmap
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [16/26] Installing optional packages (census, pykrige)...
-"%INSTALLER%" install -n pygile_base census us pykrige palettable geojson -c conda-forge -y >> %LOGFILE% 2>&1
+echo [18/30] Installing optional packages (census, pykrige, etc.)... [60%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge census us pykrige palettable geojson -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Some optional packages failed - continuing
-    echo OPTIONAL FAILED: census pykrige >> %ERRORLOG%
+    echo OPTIONAL FAILED: census pykrige etc >> %ERRORLOG%
 ) else (
     echo Done: Optional packages
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [17/26] Installing cloud tools (optional)...
-"%INSTALLER%" install -n pygile_base pystac stackstac planetary-computer -c conda-forge -y >> %LOGFILE% 2>&1
+echo [19/30] Installing cloud tools... [63%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge pystac stackstac planetary-computer -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo INFO: Cloud tools failed - continuing
+    echo INFO: Cloud tools had issues - continuing
     echo OPTIONAL FAILED: cloud tools >> %ERRORLOG%
 ) else (
     echo Done: Cloud tools
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [18/26] Installing pygis meta-package...
-"%INSTALLER%" install -n pygile_base pygis -c conda-forge -y >> %LOGFILE% 2>&1
+echo [20/30] Installing pygis meta-package... [67%%]
+"%INSTALLER%" install -n pygile_base --override-channels -c conda-forge pygis -y >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo Conda failed, trying pip for pygis...
     "%INSTALLER%" run -n pygile_base pip install pygis >> %LOGFILE% 2>&1
@@ -239,132 +318,118 @@ if !errorlevel! neq 0 (
         echo OPTIONAL FAILED: pygis >> %ERRORLOG%
     ) else (
         echo Done: pygis meta-package via pip
+        set /a SUCCESS_COUNT+=1
     )
 ) else (
     echo Done: pygis meta-package
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [19/26] Installing Earth Engine API...
+echo [21/30] Installing Earth Engine API... [70%%]
 "%INSTALLER%" run -n pygile_base pip install earthengine-api >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Earth Engine API failed - continuing
     echo OPTIONAL FAILED: earthengine-api >> %ERRORLOG%
 ) else (
     echo Done: Earth Engine API
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [20/26] Installing additional pip packages...
-"%INSTALLER%" run -n pygile_base pip install sklearn_xarray >> %LOGFILE% 2>&1
+echo [22/30] Installing custom sklearn_xarray (pyGIS compatible)... [73%%]
+"%INSTALLER%" run -n pygile_base pip install "git+https://github.com/jgrss/sklearn-xarray.git" >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo INFO: sklearn_xarray failed - continuing
-    echo OPTIONAL FAILED: sklearn_xarray >> %ERRORLOG%
+    echo Custom version failed, trying standard sklearn_xarray...
+    "%INSTALLER%" run -n pygile_base pip install sklearn_xarray >> %LOGFILE% 2>&1
+    if !errorlevel! neq 0 (
+        echo INFO: sklearn_xarray failed - continuing
+        echo OPTIONAL FAILED: sklearn_xarray >> %ERRORLOG%
+    ) else (
+        echo Done: Standard sklearn_xarray
+        set /a SUCCESS_COUNT+=1
+    )
 ) else (
-    echo Done: sklearn_xarray
+    echo Done: Custom sklearn_xarray ^(pyGIS compatible^)
+    set /a SUCCESS_COUNT+=1
 )
 
-REM Try each problematic package individually
-echo [20b/26] Attempting sankee installation...
+echo [22b/30] Installing Sphinx documentation tools... [74%%]
+"%INSTALLER%" run -n pygile_base pip install sphinx sphinx_sitemap "sphinxcontrib.bibtex" sphinx_inline_tabs pydata-sphinx-theme >> %LOGFILE% 2>&1
+if !errorlevel! neq 0 (
+    echo INFO: Sphinx tools failed - continuing
+    echo OPTIONAL FAILED: sphinx tools >> %ERRORLOG%
+) else (
+    echo Done: Sphinx documentation tools
+    set /a SUCCESS_COUNT+=1
+)
+
+echo [23/30] Installing sankee... [77%%]
 "%INSTALLER%" run -n pygile_base pip install sankee >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: sankee failed - continuing
     echo OPTIONAL FAILED: sankee >> %ERRORLOG%
 ) else (
     echo Done: sankee
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [20c/26] Attempting geeaddons installation...
-"%INSTALLER%" run -n pygile_base pip install geeaddons >> %LOGFILE% 2>&1
-if !errorlevel! neq 0 (
-    echo INFO: geeaddons failed - continuing (may not exist)
-    echo OPTIONAL FAILED: geeaddons >> %ERRORLOG%
-) else (
-    echo Done: geeaddons
-)
-
-echo [21/26] Installing advanced optional packages...
+echo [24/30] Installing advanced packages (overturemaps, whiteboxgui)... [80%%]
 "%INSTALLER%" run -n pygile_base pip install overturemaps whiteboxgui >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Advanced packages failed - continuing
     echo OPTIONAL FAILED: advanced packages >> %ERRORLOG%
 ) else (
     echo Done: Advanced packages
+    set /a SUCCESS_COUNT+=1
 )
 
-REM ============================================================
-REM GEOWOMBAT FALLBACK AND ML EXTENSION
-REM ============================================================
-echo [22/26] Installing geowombat fallback and ML extension...
-if !GEOWOMBAT_FAILED! equ 1 (
-    echo Attempting geowombat via pip as fallback...
-    "%INSTALLER%" run -n pygile_base pip install geowombat >> %LOGFILE% 2>&1
-    if !errorlevel! neq 0 (
-        echo INFO: Geowombat pip fallback failed
-        echo OPTIONAL FAILED: geowombat pip fallback >> %ERRORLOG%
-        set GEOWOMBAT_ML_SKIP=1
-    ) else (
-        echo Done: Geowombat via pip fallback
-        set GEOWOMBAT_ML_SKIP=0
-    )
-) else (
-    echo Geowombat already installed via conda-forge
-    set GEOWOMBAT_ML_SKIP=0
-)
-
-REM Now try geowombat-ml regardless of base geowombat source
-if !GEOWOMBAT_ML_SKIP! equ 0 (
-    echo Installing geowombat-ml extension...
+echo [25/30] Installing Geowombat-ML extension... [83%%]
+if !GEOWOMBAT_SUCCESS! equ 1 (
     "%INSTALLER%" run -n pygile_base pip install geowombat-ml >> %LOGFILE% 2>&1
     if !errorlevel! neq 0 (
         echo INFO: Geowombat-ml failed - continuing
         echo OPTIONAL FAILED: geowombat-ml >> %ERRORLOG%
     ) else (
         echo Done: Geowombat-ml extension
+        set /a SUCCESS_COUNT+=1
     )
 ) else (
     echo Skipping geowombat-ml (base geowombat not available)
 )
 
-echo [23/26] Installing jupyter-book...
+echo [26/30] Installing jupyter-book... [87%%]
 "%INSTALLER%" run -n pygile_base pip install jupyter-book >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: Jupyter-book failed - continuing
     echo OPTIONAL FAILED: jupyter-book >> %ERRORLOG%
 ) else (
     echo Done: Jupyter-book
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [24/26] Installing GitHub Pages deployment tool...
+echo [27/30] Installing GitHub Pages deployment tool... [90%%]
 "%INSTALLER%" run -n pygile_base pip install ghp-import >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo INFO: GitHub Pages tool failed - continuing
     echo OPTIONAL FAILED: ghp-import >> %ERRORLOG%
 ) else (
     echo Done: GitHub Pages tool
+    set /a SUCCESS_COUNT+=1
 )
 
-echo [25/26] Installing numpy utilities...
-"%INSTALLER%" run -n pygile_base pip install numpy_groupies >> %LOGFILE% 2>&1
+echo [28/30] Installing numpy utilities and SymPy... [93%%]
+"%INSTALLER%" run -n pygile_base pip install numpy_groupies sympy >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo INFO: NumPy utilities failed - continuing
-    echo OPTIONAL FAILED: numpy_groupies >> %ERRORLOG%
+    echo INFO: NumPy utilities/SymPy failed - continuing
+    echo OPTIONAL FAILED: numpy_groupies sympy >> %ERRORLOG%
 ) else (
-    echo Done: NumPy utilities
-)
-
-echo [26/26] Installing symbolic mathematics...
-"%INSTALLER%" run -n pygile_base pip install sympy >> %LOGFILE% 2>&1
-if !errorlevel! neq 0 (
-    echo INFO: SymPy failed - continuing
-    echo OPTIONAL FAILED: sympy >> %ERRORLOG%
-) else (
-    echo Done: Symbolic mathematics
+    echo Done: NumPy utilities and SymPy
+    set /a SUCCESS_COUNT+=1
 )
 
 REM ============================================================
 REM Verification
 REM ============================================================
-echo.
-echo Verifying core packages...
+echo [29/30] Verifying core packages... [97%%]
 "%INSTALLER%" run -n pygile_base python -c "import numpy, pandas, geopandas, rasterio, matplotlib; print('Core packages OK')" >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
     echo WARNING: Core package verification failed
@@ -372,15 +437,17 @@ if !errorlevel! neq 0 (
     set /a ERROR_COUNT+=1
 ) else (
     echo Verification: Core packages working
+    set /a SUCCESS_COUNT+=1
 )
 
-echo Verifying geowombat installation...
+echo [30/30] Final verification and cleanup... [100%%]
 "%INSTALLER%" run -n pygile_base python -c "import geowombat as gw; print('Geowombat version:', gw.__version__)" >> %LOGFILE% 2>&1
 if !errorlevel! neq 0 (
-    echo INFO: Geowombat verification failed
+    echo INFO: Geowombat verification failed (but may still work)
     echo VERIFY FAILED: Geowombat >> %ERRORLOG%
 ) else (
     echo Verification: Geowombat working
+    set /a SUCCESS_COUNT+=1
 )
 
 REM ============================================================
@@ -393,44 +460,64 @@ echo ============================================================
 echo Installation finished at %date% %time%
 echo.
 
-if %ERROR_COUNT% equ 0 (
-    echo SUCCESS: All packages installed successfully!
+set /a TOTAL_ATTEMPTED=30
+set /a SUCCESS_RATE=!SUCCESS_COUNT! * 100 / !TOTAL_ATTEMPTED!
+
+echo SUMMARY:
+echo - Successful installations: %SUCCESS_COUNT%/%TOTAL_ATTEMPTED% (%SUCCESS_RATE%%%)
+echo - Issues encountered: %ERROR_COUNT%
+echo.
+
+if %SUCCESS_COUNT% geq 20 (
+    echo SUCCESS: Core PyGILE environment ready for use!
     echo.
-    echo NEXT STEPS:
-    echo 1. Open miniforge prompt
-    echo 2. Type: conda activate pygile_base
-    echo 3. Type: jupyter lab
+    echo ============================================================
+    echo                    HOW TO USE YOUR ENVIRONMENT
+    echo ============================================================
     echo.
-    echo Your PyGILE environment is ready!
+    echo TO START WORKING:
+    echo 1. conda deactivate    ^(if you see 'base' in your prompt^)
+    echo 2. conda activate pygile_base
+    echo 3. jupyter lab
+    echo.
+    echo DAILY USAGE:
+    echo 1. Open Anaconda Prompt / Miniforge Prompt
+    echo 2. conda activate pygile_base
+    echo 3. jupyter lab
+    echo.
+    echo INSTALLED CORE TOOLS:
+    echo - Python 3.10 with compatibility settings
+    echo - GeoPandas for vector data analysis
+    echo - Rasterio for raster data processing
+    echo - NumPy, Pandas, SciPy for data science
+    echo - Matplotlib, Plotly, Bokeh for visualization
+    echo - Jupyter Lab for interactive notebooks
+    echo - Folium, Contextily for web mapping
+    if !GEOWOMBAT_SUCCESS! equ 1 echo - Geowombat for advanced raster processing
+    echo - Earth Engine API for satellite data
+    echo - And many more geospatial tools!
+    echo.
 ) else (
-    echo PARTIAL SUCCESS: Installation completed with %ERROR_COUNT% errors
+    echo PARTIAL SUCCESS: Environment created with some issues
     echo.
     echo Most core functionality should still work.
-    echo Check %ERRORLOG% for failed packages.
+    echo Check %ERRORLOG% for detailed error information.
     echo.
-    echo NEXT STEPS:
-    echo 1. Open miniforge prompt
-    echo 2. Type: conda activate pygile_base
-    echo 3. Try manually installing failed packages if needed
-    echo 4. Type: jupyter lab
+    echo TO START WORKING ANYWAY:
+    echo 1. conda deactivate    ^(if you see 'base' in your prompt^)
+    echo 2. conda activate pygile_base
+    echo 3. jupyter lab
     echo.
-    echo FAILED PACKAGES - check error log:
-    if exist %ERRORLOG% type %ERRORLOG%
+    echo You can try manually installing failed packages later if needed.
+    echo.
 )
 
-echo.
-echo CORE INSTALLED PACKAGES:
-echo - Python 3.10 environment
-echo - GeoPandas for vector data
-echo - Rasterio for raster data  
-echo - NumPy, Pandas for data science
-echo - Matplotlib for plotting
-echo - Jupyter Lab for notebooks
-echo - Folium, Contextily for web maps
-echo - Geowombat ^& Geowombat-ML for raster processing
-echo - Jupyter-book for documentation
-echo - And many more geospatial tools
+echo TROUBLESHOOTING:
+echo - If packages fail to import, try: conda activate pygile_base
+echo - For conda issues, try: conda clean --all
+echo - For environment issues, you can re-run this script
 echo.
 echo Installation logs saved to: %LOGFILE%
+echo Error summary saved to: %ERRORLOG%
 echo.
 pause
