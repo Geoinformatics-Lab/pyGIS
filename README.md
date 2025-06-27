@@ -18,6 +18,7 @@ Each operating system folder contains specific setup instructions and dependency
 
 #### Windows
 - Review the [environment_install_windows.pdf](environments/windows/environment_install_windows.pdf) for visual installation guide
+- Watch the [pyGILE_Installation.mkv](environments/windows/pyGILE_Installation.mkv) video guide for step-by-step visual instructions
 - Follow instructions in [windows_install_pygile_base.txt](environments/windows/windows_install_pygile_base.txt)
 
 #### Linux
