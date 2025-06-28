@@ -5,7 +5,7 @@ Complete geospatial Python environment with Jupyter notebooks for learning GIS p
 ## Installation
 
 ** Docker (fastest)**
-- Go to [docker/](docker/) → Follow README
+- Go to [docker/](docker/) → Follow README.md
 
 ** Windows**
 - Go to [environments/windows/](environments/windows/)
