@@ -1,301 +1,67 @@
 # PyGILE - Python GeoInformatics Lab Environment
 
-This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS), enhanced with organized setup instructions and Jupyter notebooks for geospatial analysis and GIS operations in Python.
+Complete geospatial Python environment with Jupyter notebooks for learning GIS and geospatial analysis.
 
-## Getting Started
+## What's This?
 
-You have two options to set up PyGILE:
+PyGILE provides everything you need to start working with geospatial data in Python. It includes pre-configured environments, step-by-step setup guides, and ready-to-use Jupyter notebooks for learning GIS programming.
 
-### Option A: Docker Setup (Easy & Fast)
+## Quick Start
 
-For the quickest setup with minimal configuration, use our pre-built Docker container:
+**Choose your setup method:**
 
-- **Docker Users**: Go to [docker/](docker/) folder
-- Follow the [Docker README](docker/README.md) for complete setup instructions
-- Ready-to-use environment with all dependencies pre-installed
+- **Docker** (fastest): Go to [docker/](docker/) 
+- **Windows**: Go to [environments/windows/](environments/windows/)
+- **Linux**: Go to [environments/linux/](environments/linux/)
+- **macOS**: Go to [environments/mac/](environments/mac/)
 
-### Option B: Manual Installation by Operating System
+Each folder contains complete setup instructions.
 
-Navigate to the appropriate folder in `environments/` based on your operating system:
+## What's Included
 
-- **Windows Users**: Go to [environments/windows/](environments/windows/)
-- **Linux Users**: Go to [environments/linux/](environments/linux/)
-- **macOS Users**: Go to [environments/mac/](environments/mac/)
+ **Setup Options**
+- Docker container (one-command setup)
+- Conda environments for Windows, Linux, macOS
+- Detailed installation guides with videos
 
-### Step 2: Follow Setup Instructions
-
-#### Docker (Easy & Fast)
-- Contains `Dockerfile`, `entrypoint.sh`, and detailed `README.md`
-- One command setup: `docker run -p 8888:8888 iamvuon/pygile_docker:latest`
-- Works on Windows, Mac, and Linux with Docker Desktop installed
-
-#### Manual Installation by OS
-
-Each operating system folder contains specific setup instructions and dependency installation guides:
-
-**Windows**
-- Review the [environment_install_windows.pdf](environments/windows/environment_install_windows.pdf) for visual installation guide
-- Watch the [pyGILE_Installation.mkv](environments/windows/pyGILE_Installation.mkv) video guide for step-by-step visual instructions
-- Follow instructions in [windows_install_pygile_base.txt](environments/windows/windows_install_pygile_base.txt)
-
-**Linux**
-- Follow the [README.md](environments/linux/README.md) file in the Linux folder
-- Use the provided [environment.yaml](environments/linux/environment.yaml) file to create the conda environment
-
-**macOS**
-- Follow the [README.md](environments/mac/README.md) file in the macOS folder
-- Use the provided [environment.yaml](environments/mac/environment.yaml) file to create the conda environment
-
-### Step 3: Launch Jupyter Lab
-
-**Docker users**: Jupyter Lab launches automatically - just open `http://localhost:8888` in your browser
-
-**Manual installation users**: After setting up your environment, launch Jupyter Lab:
-
-```
-jupyter lab
-```
-
-### Step 4: Explore the Notebooks
-
-Navigate to the [pyGILE_notebooks/](pyGILE_notebooks/) folder within Jupyter Lab to access the available notebooks. These notebooks contain:
-
+ **Learning Materials**
+- Jupyter notebooks in [pyGILE_notebooks/](pyGILE_notebooks/)
 - GIS tutorials and examples
 - Geospatial data analysis workflows
-- Python-based GIS operations
-- Interactive mapping examples
+- Interactive mapping demonstrations
 
-## Features
+ **Tools & Libraries**
+- GeoPandas, Rasterio, GDAL
+- Matplotlib, Plotly, Folium
+- Jupyter Lab environment
+- 50+ geospatial Python packages
 
-- **Docker support**: One-command setup with pre-built container
-- **Cross-platform support**: Setup instructions for Windows, Linux, and macOS
-- **Organized notebooks**: All Jupyter notebooks are centralized in the [pyGILE_notebooks/](pyGILE_notebooks/) folder
-- **Comprehensive setup**: Detailed installation guides for each operating system
-- **Ready-to-use environment**: Pre-configured conda environments for seamless setup
+## How to Use
+
+1. **Pick your setup method** from the folders above
+2. **Follow the setup guide** in that folder
+3. **Launch Jupyter Lab**
+4. **Open notebooks** from the `pyGILE_notebooks/` folder
+5. **Start learning!**
+
+## Need Help?
+
+- **Setup issues**: Check the README in your chosen setup folder
+- **General questions**: [Open an issue](https://github.com/Geoinformatics-Lab/PyGILE/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Geoinformatics-Lab/PyGILE/discussions)
 
 ## Contributing
 
-This is a fork of the original pyGIS repository. For contributions:
-
 1. Fork this repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+2. Make your improvements
+3. Submit a pull request
 
-## Original Repository
+We welcome contributions to setup guides, notebooks, and documentation!
 
-This repository is forked from [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS). Please refer to the original repository for the core pyGIS functionality and documentation.
+## Credits
+
+This repository is enhanced from [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS) by the Geoinformatics Lab, with organized setup instructions and improved documentation.
 
 ## License
 
 Please refer to the original repository's license terms.
-
-## Acknowledgments
-
-- Original pyGIS repository by [mmann1123](https://github.com/mmann1123)
-- Geoinformatics Lab for organizing and enhancing the setup process
-
-##  Quick Start
-
-### Prerequisites
-1. **Install Docker Desktop** from [docker.com](https://www.docker.com/products/docker-desktop/)
-2. **Make sure Docker Desktop is running** (you should see the Docker whale icon in your system tray)
-
-### Option 1: Using Pre-built Image (Recommended)
-
-**Step 1:** Open a terminal/command prompt
-- **Windows users:** Press `Win + R`, type `cmd`, press Enter
-- **Mac users:** Press `Cmd + Space`, type "Terminal", press Enter  
-- **Linux users:** Press `Ctrl + Alt + T`
-- **Docker Desktop terminal:** Open Docker Desktop → Click the terminal icon **(Recommended)**
-
-**Step 2:** Copy and paste this command:
-```bash
-docker run -p 8888:8888 iamvuon/pygile_docker:latest
-```
-
-**Step 3:** Press Enter and wait for download to complete
-
-**Step 4:** Open your web browser and go to: `http://localhost:8888`
-
-**Step 5:** Copy the token from your terminal and paste it into Jupyter Lab
-
-### Option 2: Build from Source (Advanced Users Only)
-
-1. **Clone this repository (in Command Prompt/Terminal):**
-   ```bash
-   git clone https://github.com/Geoinformatics-Lab/PyGILE.git
-   cd PyGILE/docker
-   ```
-
-2. **Build the Docker image (in Command Prompt/Terminal):**
-   ```bash
-   docker build -t pygile:local .
-   ```
-
-3. **Run the container (in Command Prompt/Terminal):**
-   ```bash
-   docker run -p 8888:8888 pygile:local
-   ```
-
-**Requirements:**
-- Docker Desktop must be installed and running
-- Commands are run in your system's command line (NOT inside Docker Desktop)
-
-##  Usage Instructions
-
-### Starting Jupyter Lab
-
-1. **Run the container:**
-   ```bash
-   docker run -p 8888:8888 pygile:latest
-   ```
-
-2. **Access Jupyter Lab:**
-   - Open your browser
-   - Go to: `http://localhost:8888`
-   - Use the token shown in the terminal output
-
-### Working with Your Files
-
-**Mount a local directory to save your work:**
-```bash
-docker run -p 8888:8888 -v /your/local/path:/workspace/notebooks pygile:latest
-```
-
-**Example (Windows):**
-```bash
-docker run -p 8888:8888 -v C:\Users\YourName\Documents\PyGILE:/workspace/notebooks pygile:latest
-```
-
-**Example (Mac/Linux):**
-```bash
-docker run -p 8888:8888 -v ~/Documents/PyGILE:/workspace/notebooks pygile:latest
-```
-
-### Advanced Usage
-
-**Run with custom command:**
-```bash
-docker run -it pygile:latest bash  # Start interactive shell
-```
-
-**Run with Docker Compose:**
-```yaml
-version: '3.8'
-services:
-  pygile:
-    image: pygile:latest
-    ports:
-      - "8888:8888"
-    volumes:
-      - ./notebooks:/workspace/notebooks
-```
-
-##  Development
-
-### Building the Image
-
-**Requirements:**
-- Docker Desktop installed
-- At least 8GB free disk space
-- Stable internet connection
-
-**Build process:**
-```bash
-cd docker/
-docker build -t pygile:latest .
-```
-
-**Build time:** ~20-30 minutes (downloads and installs 50+ packages)
-
-### Files Structure
-
-```
-docker/
-├── Dockerfile          # Main build instructions
-├── entrypoint.sh       # Startup script for Jupyter
-└── README.md          # This file
-```
-
-##  Troubleshooting
-
-### Port Already in Use
-```bash
-# Use a different port
-docker run -p 8889:8888 pygile:latest
-# Then access: http://localhost:8889
-```
-
-### Permission Issues (Linux/Mac)
-```bash
-# Run with your user ID
-docker run -p 8888:8888 --user $(id -u):$(id -g) pygile:latest
-```
-
-### Container Won't Start
-```bash
-# Check container logs
-docker logs <container_id>
-
-# Start with bash to debug
-docker run -it --entrypoint="" pygile:latest bash
-```
-
-### Jupyter Token Issues
-```bash
-# Start Jupyter without token
-docker run -p 8888:8888 pygile:latest jupyter lab --NotebookApp.token=''
-```
-
-##  Package List
-
-**Core Geospatial:**
-- GDAL 3.6.2, PROJ 9.1.0, GEOS 3.11.1
-- GeoPandas, Rasterio, Shapely, Fiona, PyProj
-
-**Specialized Tools:**
-- Geowombat 2.1.22 (raster processing)
-- OSMNX (street networks)
-- EarthPy (Earth Lab workflows)
-- Contextily (basemap tiles)
-
-**Scientific Computing:**
-- NumPy 1.24.3, Pandas, SciPy
-- Matplotlib, Seaborn, Plotly
-- Scikit-learn, XArray
-
-**Complete list:** See [environment.yaml](../environments/linux/environment.yaml)
-
-##  Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Test your changes with Docker
-4. Commit your changes: `git commit -m 'Add amazing feature'`
-5. Push to the branch: `git push origin feature/amazing-feature`
-6. Open a Pull Request
-
-##  License
-
-This project is licensed under the same terms as the main PyGILE repository.
-
-##  Support
-
-- **Issues:** [GitHub Issues](https://github.com/Geoinformatics-Lab/PyGILE/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/Geoinformatics-Lab/PyGILE/discussions)
-- **Original PyGILE:** [Main Repository](https://github.com/Geoinformatics-Lab/PyGILE)
-
-##  System Requirements
-
-**Minimum:**
-- 4GB RAM
-- 10GB free disk space
-- Docker Desktop
-
-**Recommended:**
-- 8GB+ RAM
-- 20GB+ free disk space
-- Fast internet connection
-
----
