@@ -9,8 +9,8 @@ Complete geospatial Python environment with Jupyter notebooks for learning GIS p
 
 ** Windows**
 - Go to [environments/windows/](environments/windows/)
-- Watch: `pyGILE_Installation.mp4`
-- Read: `environment_install_windows.pdf`
+- Watch: [environments/windows/](pyGILE_Installation.mp4)
+- Read: [environments/windows/](environment_install_windows.pdf)
 
 
 ** Linux** 
@@ -26,7 +26,7 @@ Complete geospatial Python environment with Jupyter notebooks for learning GIS p
 
 1. Complete installation above
 2. Launch Jupyter Lab
-3. Open notebooks from `pyGILE_notebooks/` folder
+3. Open notebooks from [pyGILE_notebooks](pyGILE_notebooks/) folder
 
 ## Contributing
 
