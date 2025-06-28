@@ -1,99 +1,18 @@
-# PyGILE - Python GeoInformatics Lab Environment
+# PyGILE Docker Environment
 
-This repository is a fork of [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS), enhanced with organized setup instructions and Jupyter notebooks for geospatial analysis and GIS operations in Python.
+A complete geospatial Python environment for PyGILE learning materials, packaged as a Docker container.
 
-## Getting Started
+##  What's Included
 
-You have two options to set up PyGILE:
+This Docker image provides a ready-to-use geospatial Python environment with:
 
-### Option A: Docker Setup (Easy & Fast)
-
-For the quickest setup with minimal configuration, use our pre-built Docker container:
-
-- **Docker Users**: Go to [docker/](docker/) folder
-- Follow the [Docker README](docker/README.md) for complete setup instructions
-- Ready-to-use environment with all dependencies pre-installed
-
-### Option B: Manual Installation by Operating System
-
-Navigate to the appropriate folder in `environments/` based on your operating system:
-
-- **Windows Users**: Go to [environments/windows/](environments/windows/)
-- **Linux Users**: Go to [environments/linux/](environments/linux/)
-- **macOS Users**: Go to [environments/mac/](environments/mac/)
-
-### Step 2: Follow Setup Instructions
-
-#### Docker (Easy & Fast)
-- Contains `Dockerfile`, `entrypoint.sh`, and detailed `README.md`
-- One command setup: `docker run -p 8888:8888 iamvuon/pygile_docker:latest`
-- Works on Windows, Mac, and Linux with Docker Desktop installed
-
-#### Manual Installation by OS
-
-Each operating system folder contains specific setup instructions and dependency installation guides:
-
-**Windows**
-- Review the [environment_install_windows.pdf](environments/windows/environment_install_windows.pdf) for visual installation guide
-- Watch the [pyGILE_Installation.mkv](environments/windows/pyGILE_Installation.mkv) video guide for step-by-step visual instructions
-- Follow instructions in [windows_install_pygile_base.txt](environments/windows/windows_install_pygile_base.txt)
-
-**Linux**
-- Follow the [README.md](environments/linux/README.md) file in the Linux folder
-- Use the provided [environment.yaml](environments/linux/environment.yaml) file to create the conda environment
-
-**macOS**
-- Follow the [README.md](environments/mac/README.md) file in the macOS folder
-- Use the provided [environment.yaml](environments/mac/environment.yaml) file to create the conda environment
-
-### Step 3: Launch Jupyter Lab
-
-**Docker users**: Jupyter Lab launches automatically - just open `http://localhost:8888` in your browser
-
-**Manual installation users**: After setting up your environment, launch Jupyter Lab:
-
-```
-jupyter lab
-```
-
-### Step 4: Explore the Notebooks
-
-Navigate to the [pyGILE_notebooks/](pyGILE_notebooks/) folder within Jupyter Lab to access the available notebooks. These notebooks contain:
-
-- GIS tutorials and examples
-- Geospatial data analysis workflows
-- Python-based GIS operations
-- Interactive mapping examples
-
-## Features
-
-- **Docker support**: One-command setup with pre-built container
-- **Cross-platform support**: Setup instructions for Windows, Linux, and macOS
-- **Organized notebooks**: All Jupyter notebooks are centralized in the [pyGILE_notebooks/](pyGILE_notebooks/) folder
-- **Comprehensive setup**: Detailed installation guides for each operating system
-- **Ready-to-use environment**: Pre-configured conda environments for seamless setup
-
-## Contributing
-
-This is a fork of the original pyGIS repository. For contributions:
-
-1. Fork this repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## Original Repository
-
-This repository is forked from [mmann1123/pyGIS](https://github.com/mmann1123/pyGIS). Please refer to the original repository for the core pyGIS functionality and documentation.
-
-## License
-
-Please refer to the original repository's license terms.
-
-## Acknowledgments
-
-- Original pyGIS repository by [mmann1123](https://github.com/mmann1123)
-- Geoinformatics Lab for organizing and enhancing the setup process
+- **Python 3.10** with conda/mamba package management
+- **Core Geospatial Libraries**: GeoPandas, Rasterio, Shapely, Fiona, GDAL
+- **Advanced Tools**: Geowombat, Earth Engine API, OSMNX
+- **Scientific Stack**: NumPy, Pandas, SciPy, Matplotlib, Seaborn
+- **Jupyter Environment**: JupyterLab 4.4.3 with geospatial extensions
+- **Visualization**: Plotly, Folium, Contextily, Bokeh
+- **50+ specialized geospatial packages**
 
 ##  Quick Start
 
@@ -104,10 +23,12 @@ Please refer to the original repository's license terms.
 ### Option 1: Using Pre-built Image (Recommended)
 
 **Step 1:** Open a terminal/command prompt
+- **Docker Desktop terminal:** Open Docker Desktop → Click the terminal icon **(Recommended)**
+OR
 - **Windows users:** Press `Win + R`, type `cmd`, press Enter
 - **Mac users:** Press `Cmd + Space`, type "Terminal", press Enter  
 - **Linux users:** Press `Ctrl + Alt + T`
-- **Docker Desktop terminal:** Open Docker Desktop → Click the terminal icon **(Recommended)**
+
 
 **Step 2:** Copy and paste this command:
 ```bash
