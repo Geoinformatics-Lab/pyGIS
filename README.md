@@ -11,17 +11,16 @@ Complete geospatial Python environment with Jupyter notebooks for learning GIS p
 - Go to [environments/windows/](environments/windows/)
 - Watch: `pyGILE_Installation.mp4`
 - Read: `environment_install_windows.pdf`
-- Run: `windows_install_pygile_base.txt`
+
 
 ** Linux** 
 - Go to [environments/linux/](environments/linux/)
 - Follow: `README.md`
-- Use: `environment.yaml`
+
 
 ** macOS**
 - Go to [environments/mac/](environments/mac/) 
 - Follow: `README.md`
-- Use: `environment.yaml`
 
 ## Usage
 
