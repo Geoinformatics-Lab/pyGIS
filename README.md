@@ -10,8 +10,8 @@ It’s a complete geospatial Python environment—perfect for learning and teach
 
 ** Windows**
 - Go to [environments/windows/](environments/windows/)
-- Watch: [environments/windows/](pyGILE_Installation.mp4)
-- Read: [environments/windows/](environment_install_windows.pdf)
+- Watch Video: [environments/windows/](environments/windows/pyGILE_Installation.mp4)
+- Read: [environments/windows/](environments/windows/environment_install_windows.pdf)
 
 
 ** Linux** 
