@@ -8,7 +8,7 @@ It’s a complete geospatial Python environment—perfect for learning and teach
 ### Docker (fastest)
 - Go to [docker/](docker/) → Follow README.md
 
-### Windows**
+### Windows
 - Go to [environments/windows/](environments/windows/)
 - Watch Video: [environments/windows/](environments/windows/pyGILE_Installation.mp4)
 - Read: [environments/windows/](environments/windows/environment_install_windows.pdf)
@@ -19,7 +19,7 @@ It’s a complete geospatial Python environment—perfect for learning and teach
 - Follow: `README.md`
 
 
-** macOS**
+### macOS
 - Go to [environments/mac/](environments/mac/) 
 - Follow: `README.md`
 
@@ -31,6 +31,7 @@ It’s a complete geospatial Python environment—perfect for learning and teach
 
 ## Contributing
 
+We welcome and recognize all contributions. 
 Fork → Make changes → Pull request
 
 ## Credits
