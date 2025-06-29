@@ -2,9 +2,13 @@
 
 A complete geospatial Python environment for PyGILE learning materials, packaged as a Docker container.
 
+##  Pre-built PyGILE Docker image
+
+[Pre-built PyGILE Docker image](https://hub.docker.com/r/iamvuon/pygile_docker)
+
 ##  What's Included
 
-This Docker image provides a ready-to-use geospatial Python environment with:
+The Dockerfile can be used to create Docker image of ready-to-use geospatial Python environment with:
 
 - **Python 3.10** with conda/mamba package management
 - **Core Geospatial Libraries**: GeoPandas, Rasterio, Shapely, Fiona, GDAL
@@ -14,7 +18,7 @@ This Docker image provides a ready-to-use geospatial Python environment with:
 - **Visualization**: Plotly, Folium, Contextily, Bokeh
 - **50+ specialized geospatial packages**
 
-##  Quick Start
+##  Building your own Docker image
 
 ### Prerequisites
 1. **Install Docker Desktop** from [docker.com](https://www.docker.com/products/docker-desktop/)
