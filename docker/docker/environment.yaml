@@ -1,0 +1,96 @@
+name: pyGILE_base
+channels:
+  - conda-forge
+dependencies:
+  # Core Python
+  - python=3.10
+  
+  # Core scientific stack
+  - numpy=1.24.3
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  
+  # Image processing
+  - scikit-image
+  - imageio-ffmpeg
+  - tifffile
+  
+  # Geospatial core
+  - geopandas
+  - rasterio
+  - shapely
+  - pyproj
+  - fiona
+  
+  # Raster tools
+  - rio-cogeo
+  - rioxarray
+  
+  # Geospatial extras
+  - contextily
+  - folium
+  - osmnx
+  - earthpy
+  - mapclassify
+  - geoplot
+  - geowombat=2.1.22
+  
+  # Interactive mapping
+  - ipyleaflet
+  - leafmap
+  - geemap
+  - localtileserver
+  
+  # Parallel processing
+  - dask-geopandas=0.4.3
+  
+  # US Census and demographic data
+  - cenpy=1.0.1
+  - census=0.8.24
+  - us=3.2.0
+  
+  # Data formats
+  - h5py
+  - netcdf4
+  - h5netcdf
+  - xarray
+  - zarr
+  
+  # Cloud/satellite data tools
+  - pystac
+  - stackstac
+  - planetary-computer
+  
+  # Visualization
+  - plotly
+  - bokeh
+  
+  # Utilities
+  - palettable
+  - owslib
+  
+  # Jupyter
+  - jupyter
+  - jupyterlab=4.4.3
+  - ipywidgets
+  
+  # Development tools
+  - pip
+  
+  # Pip dependencies
+  - pip:
+    - sympy==1.14.0
+    - numpy-groupies==0.11.2
+    - jupyter-book==1.0.4
+    - geojson==3.2.0
+    - pykrige==1.7.2
+    - sklearn-xarray==0.4.0
+    - sphinx
+    - sphinx-sitemap
+    - sphinxcontrib.bibtex
+    - sphinx-inline-tabs
+    - pydata-sphinx-theme
+    - ghp-import

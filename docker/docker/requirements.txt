@@ -1,0 +1,15 @@
+# Core pip packages for pyGILE_base (simplified)
+
+# Earth Engine (optional)
+earthengine-api
+
+# Additional mapping
+streamlit-folium
+
+# Documentation
+nbconvert
+myst-parser
+
+# Development
+black
+flake8

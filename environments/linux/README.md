@@ -66,7 +66,31 @@ You should see a version number like "mamba 2.1.1"
 
 ===============================================================================
 
-## Step 5: Create PyGILE Environment
+## Step 5A: Create PyGILE Environment Using Script
+
+Navigate to the linux setup folder:
+
+```bash
+cd PyGILE-main/environments/linux
+```
+
+Make the script executable and run it:
+
+```bash
+chmod +x install_pygile_linux.sh
+./install_pygile_linux.sh
+```
+
+The script will install packages individually and continue even if some packages fail. Check the logs for details:
+
+```bash
+cat pygile_install.log
+cat pygile_errors.log
+```
+
+===============================================================================
+
+## Step 5B: Create PyGILE Environment Using YAML
 
 Navigate to the linux setup folder:
 
@@ -82,7 +106,6 @@ mamba env create -f environment.yaml
 
 Press "y" to proceed installation
 
-This installs Python and 50+ geospatial packages. 
 
 ===============================================================================
 

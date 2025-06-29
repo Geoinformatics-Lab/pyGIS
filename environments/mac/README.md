@@ -112,7 +112,31 @@ You should see a version number like "mamba 2.1.1"
 
 ===============================================================================
 
-## Step 5: Create Pygile_base Environment
+## Step 5A: Create Pygile_base Environment Using Script
+
+Navigate to the mac setup folder:
+
+```bash
+cd pyGILE-main/environments/mac
+```
+
+Make the script executable and run it:
+
+```bash
+chmod +x install_pygile_macos.sh
+./install_pygile_macos.sh
+```
+
+The script will install packages individually and continue even if some packages fail. Check the logs for details:
+
+```bash
+cat pygile_install.log
+cat pygile_errors.log
+```
+
+===============================================================================
+
+## Step 5B: Create Pygile_base Environment Using YAML
 
 Navigate to the mac setup folder:
 
