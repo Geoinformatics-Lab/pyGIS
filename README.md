@@ -1,27 +1,26 @@
 # PyGILE - Python GeoInformatics Lab Environment
 
-PyGILE (Python GeoInformatics Lab Environment) is a modern, lightweight fork of PyGIS, built for hands-on geospatial learning. It features modular, interactive Jupyter Notebooks and runs seamlessly on Windows, Linux, and macOS. Powered by conda-forge and Miniforge/Mamba, PyGILE delivers a fast, hassle-free setup across platforms.
-It’s a complete geospatial Python environment—perfect for learning and teaching GIS programming with Jupyter.
+PyGILE is a complete geospatial Python environment for learning and teaching GIS programming with Jupyter. Built as a modern, lightweight fork of PyGIS, it features interactive Jupyter Notebooks and runs seamlessly on Windows, Linux, and macOS.
 
-## Installation
+## Quick Start
 
-### Docker (fastest)
+### Docker (Recommended)
 - Go to [docker/](docker/) → Follow README.md
 
-### Windows
+### Platform Installation
+
+**Windows**
 - Go to [environments/windows/](environments/windows/)
-- Watch Video: [environments/windows/](environments/windows/pyGILE_Installation.mp4)
-- Read: [environments/windows/](environments/windows/environment_install_windows.pdf)
+- Watch: [Installation Video](environments/windows/pyGILE_Installation.mp4)
+- Read: [Installation Guide PDF](environments/windows/environment_install_windows.pdf)
 
-
-### Linux 
+**Linux**
 - Go to [environments/linux/](environments/linux/)
-- Follow: `README.md`
+- Follow: README.md
 
-
-### macOS
-- Go to [environments/mac/](environments/mac/) 
-- Follow: `README.md`
+**macOS**  
+- Go to [environments/mac/](environments/mac/)
+- Follow: README.md
 
 ## Usage
 
@@ -31,8 +30,9 @@ It’s a complete geospatial Python environment—perfect for learning and teach
 
 ## Contributing
 
-We welcome and recognize all contributions. 
 Fork → Make changes → Pull request
+
+All contributions welcome!
 
 ## Credits
 

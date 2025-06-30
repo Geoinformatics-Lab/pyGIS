@@ -1,224 +1,144 @@
-# Pygile Environment Installation setup for macOS
+# PyGILE macOS Installation Guide
 
-## Step 1: Download and Extract Repository
+## 1. Download PyGILE Repository
 
-Go to: [https://github.com/Geoinformatics-Lab/pyGILE](https://github.com/Geoinformatics-Lab/pyGILE)
+Go to https://github.com/Geoinformatics-Lab/pyGILE
 
-Click green "Code" button -> "Download ZIP"
+Click green Code button and Download ZIP
 
-Extract the ZIP file to your home directory
+Extract to home directory to get pyGILE-main folder
 
-You will get a folder named "pyGILE-main"
+## 2. Download Miniforge3
 
-===============================================================================
+Go to https://github.com/conda-forge/miniforge/releases/latest/
 
-## Step 2: Download Miniforge3
+**For Intel Macs:** Download `Miniforge3-MacOSX-x86_64.sh`
 
-**EASIEST METHOD - Use your browser:**
+**For Apple Silicon Macs (M1/M2/M3):** Download `Miniforge3-MacOSX-arm64.sh`
 
-1. Go to: [https://github.com/conda-forge/miniforge/releases/latest/](https://github.com/conda-forge/miniforge/releases/latest/)
+To check your Mac: Apple menu → About This Mac
 
-2. **For Intel Macs:** Click on `Miniforge3-MacOSX-x86_64.sh` to download
+## 3. Install Miniforge3
 
-3. **For Apple Silicon Macs (M1/M2/M3):** Click on `Miniforge3-MacOSX-arm64.sh` to download
+Open Terminal (Cmd+Space, type Terminal)
 
-4. The file will download to your Downloads folder
-
-**To check which Mac you have:** Click Apple menu → About This Mac
-- If you see "Intel" → use x86_64 version
-- If you see "Apple M1", "Apple M2", or "Apple M3" → use arm64 version
-
-**Alternative (Terminal method):**
-
-If you prefer using Terminal and have curl:
-```bash
-# For Intel Macs:
-curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh
-
-# For Apple Silicon Macs:
-curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh
-```
-
-===============================================================================
-
-## Step 3: Install Miniforge3
-
-Open Terminal (Cmd+Space, type "Terminal", press Enter)
-
-Navigate to where you downloaded the file or look for pc defaults downloads folder (Example: Downloads folder):
+Navigate to Downloads:
 
 ```bash
 cd ~/Downloads
 ```
 
-Make the installer executable and run it:
-
 **For Intel Macs:**
-
 ```bash
 chmod +x Miniforge3-MacOSX-x86_64.sh
 ./Miniforge3-MacOSX-x86_64.sh
 ```
 
-**For Apple Silicon Macs (M1/M2/M3):**
-
+**For Apple Silicon Macs:**
 ```bash
 chmod +x Miniforge3-MacOSX-arm64.sh
 ./Miniforge3-MacOSX-arm64.sh
 ```
 
-During installation you will see:
+During installation:
+- Press Enter to continue
+- Press Enter after reading license
+- Type yes and press Enter
+- Press Enter for default location
+- **WARNING: TYPE NO WHEN ASKED ABOUT SHELL PROFILE**
 
-1. Press Enter to continue reading license
-2. Press Enter again after reading license  
-3. Type "yes" and press Enter to accept license
-4. Press Enter to accept default installation location (`/Users/yourusername/miniforge3`)
-5. You may see a PYTHONPATH warning - ignore this warning
-
-**!! CAREFUL !!**
-
-When asked "Do you wish to update your shell profile to automatically initialize conda?" - Type "NO" and press Enter
-
-Installation will complete with "Thank you for installing Miniforge3!" message.
-
-===============================================================================
-
-## Step 4: Initialize Miniforge3 Manually
-
-Since you chose "no" during installation, run these commands:
+## 4. Initialize Miniforge3
 
 ```bash
 eval "$(/Users/$USER/miniforge3/bin/conda shell.bash hook)"
+```
+
+```bash
 conda init
 ```
 
-**For different shells:**
-- If using zsh (default on macOS Catalina+): `conda init zsh`
-- If using bash: `conda init bash`
-
-Then reload your shell:
-
+For zsh (default on newer macOS):
 ```bash
-exec zsh -l     # for zsh
+conda init zsh
+exec zsh -l
 ```
 
-Test if mamba is working:
+For bash:
+```bash
+conda init bash
+```
+
+Test installation:
 
 ```bash
 mamba --version
 ```
 
-You should see a version number like "mamba 2.1.1"
+## 5. Create PyGILE Environment
 
-===============================================================================
-
-## Step 5A: Create Pygile_base Environment Using Script
-
-Navigate to the mac setup folder:
+Navigate to setup folder:
 
 ```bash
 cd pyGILE-main/environments/mac
 ```
 
-Make the script executable and run it:
+Choose one method:
 
+Method A - Using script:
 ```bash
 chmod +x install_pygile_macos.sh
 ./install_pygile_macos.sh
 ```
 
-The script will install packages individually and continue even if some packages fail. Check the logs for details:
-
-```bash
-cat pygile_install.log
-cat pygile_errors.log
-```
-
-===============================================================================
-
-## Step 5B: Create Pygile_base Environment Using YAML
-
-Navigate to the mac setup folder:
-
-```bash
-cd pyGILE-main/environments/mac
-```
-
-Create environment from YAML file:
-
+Method B - Using YAML:
 ```bash
 mamba env create -f environment.yaml
 ```
 
-Press "y" to proceed with installation.
-
-This installs Python and 50+ geospatial packages. 
-
-===============================================================================
-
-## Step 6: Activate Environment
-
-First, deactivate any current environment: **[IF RAN ERROR] JUST SKIP THIS AND INITIALIZE THE CURRENT SHELL USING NEXT STEP**
+## 6. Activate Environment
 
 ```bash
 conda deactivate
 ```
 
-To initialize the current shell, run:
-
 ```bash
 eval "$(mamba shell hook --shell bash)"
 ```
 
-*Note: Replace "bash" with "zsh" if you're using zsh*
-
-Then activate the Pygile_base environment:
+For zsh users:
+```bash
+eval "$(mamba shell hook --shell zsh)"
+```
 
 ```bash
 mamba activate pygile_base
 ```
 
-Your prompt should now show `(pygile_base)` at the beginning of each line.
-
-===============================================================================
-
-## Step 7: Test Installation
+## 7. Test Installation
 
 ```bash
 python -c 'import geopandas, rasterio, geowombat, jupyter; print("All packages working!")'
 ```
 
-You should see: "All packages working!"
-
-**SUCCESS!** 
-
-===============================================================================
+Should show: All packages working!
 
 ## Daily Usage
 
-Every time you want to use Pygile_base:
+```bash
+mamba activate pygile_base
+```
 
-1. Open Terminal (Cmd+Space, type "Terminal", press Enter)
+```bash
+jupyter lab
+```
 
-2. ```bash
-   mamba activate pygile_base
-   ```
+Navigate to pyGILE-main folder and open notebooks in pyGILE_notebooks folder
 
-3. ```bash
-   jupyter lab
-   ```
+## macOS Notes
 
-4. cd into pyGILE-main folder; inside there is folder called "pyGILE_notebooks" open any notebooks and interact!!
+For Apple Silicon Macs: Use ARM64 version
 
-===============================================================================
-
-## macOS-Specific Notes:
-
-- **Apple Silicon Macs (M1/M2/M3):** Make sure you downloaded the ARM64 version of Miniforge3
-- **Shell:** macOS Catalina+ uses zsh by default, older versions use bash
-- **Terminal:** Open with Cmd+Space → "Terminal" or Applications → Utilities → Terminal
-- **Homebrew:** May be needed for some dependencies if not already installed
-- **Xcode Command Line Tools:** May be required for some packages:
-  ```bash
-  xcode-select --install
-  ```
+If needed, install Xcode Command Line Tools:
+```bash
+xcode-select --install
+```
