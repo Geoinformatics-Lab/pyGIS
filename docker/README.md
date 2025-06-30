@@ -7,7 +7,7 @@ Open Docker Desktop and open PowerShell in your project directory.
 Since you have a Dockerfile in the docker folder:
 
 ```bash
-cd docker
+cd D:\JUPITER\JAPAN_MAY_JULY\GITHUB\pyGILE-main\docker [Adjust path based on your cloned folder location]
 docker build -t pygile-app .
 ```
 
