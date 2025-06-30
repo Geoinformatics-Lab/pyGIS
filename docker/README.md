@@ -17,27 +17,9 @@ To run the container after building:
 docker run --name pygile-container -p 8888:8888 pygile-app
 ```
 
-## 2. How to push to Docker Hub
 
-First login to Docker Hub:
 
-```bash
-docker login
-```
-
-Tag your image (already done as iamvuon/pygile_base):
-
-```bash
-docker tag pygile-app iamvuon/pygile_base
-```
-
-Push to Docker Hub:
-
-```bash
-docker push iamvuon/pygile_base
-```
-
-## 3. How to pull the existing PyGILE image from Docker Hub and run
+## 2. How to pull the existing PyGILE image from Docker Hub and run
 
 Open Docker Desktop and open terminal:
 
@@ -63,7 +45,7 @@ To run with the standard PyGILE container name:
 docker run --name pygile-container iamvuon/pygile_base
 ```
 
-## 4. How to connect to your PyGILE repo and run Jupyter
+## 3. How to connect to your PyGILE repo and run Jupyter
 
 First clone your PyGILE repository:
 
@@ -88,7 +70,7 @@ For Windows Command Prompt:
 docker run --name pygile-dev-container -p 8888:8888 -v %cd%:/workspace/pygile iamvuon/pygile_base
 ```
 
-## 5. How to start the existing PyGILE container
+## 4. How to start the existing PyGILE container
 
 ```bash
 docker start pygile-container
@@ -99,7 +81,7 @@ Or for development container:
 docker start pygile-dev-container
 ```
 
-## 6. How to inspect the PyGILE container
+## 5. How to inspect the PyGILE container
 
 To see what containers are running:
 
@@ -142,7 +124,7 @@ Run PyGILE interactively:
 docker run -it iamvuon/pygile_base bash
 ```
 
-## 7. How to manage PyGILE containers and images
+## 6. How to manage PyGILE containers and images
 
 To see all images:
 
