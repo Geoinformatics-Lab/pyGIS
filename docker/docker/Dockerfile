@@ -31,10 +31,14 @@ RUN conda config --set channel_priority strict && \
     jupyter jupyterlab ipywidgets \
     osmnx earthpy \
     gdal \
+    scikit-learn \
     -y && \
     pip install --no-cache-dir \
     earthengine-api streamlit-folium nbconvert black flake8 \
     sympy jupyter-book geojson pykrige \
+    geoplot \
+    sklearn-xarray \
+    census \
     git+https://github.com/jgrss/geowombat.git && \
     mamba clean -afy && \
     conda clean -afy && \
