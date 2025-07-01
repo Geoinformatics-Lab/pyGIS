@@ -1,6 +1,13 @@
 # Docker Commands Guide for PyGILE Project
 
-## 1. How to build and run the PyGILE Docker container
+## Quick Start for PyGILE Development
+
+1. Pull the image: `docker pull iamvuon/pygile_base`
+2. Navigate to your PyGILE project directory
+3. Run with volume mounting: `docker run --name pygile-dev -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base`
+4. Access Jupyter at: http://localhost:8888
+
+## How to build and run the PyGILE Docker container?
 
 Open Docker Desktop and open PowerShell in your project directory.
 
@@ -17,9 +24,9 @@ To run the container after building:
 docker run --name pygile-container -p 8888:8888 pygile-app
 ```
 
+OR; IF YOU WISH TO PULL AND RUN WITHOUT BUILDING
 
-
-## 2. How to pull the existing PyGILE image from Docker Hub and run
+## How to pull the existing PyGILE image from Docker Hub and run?
 
 Open Docker Desktop and open terminal:
 
@@ -45,7 +52,7 @@ To run with the standard PyGILE container name:
 docker run --name pygile-container iamvuon/pygile_base
 ```
 
-## 3. How to connect to your PyGILE repo and run Jupyter
+## How to connect to your PyGILE repo and run Jupyter?
 
 First clone your PyGILE repository:
 
@@ -70,7 +77,7 @@ For Windows Command Prompt:
 docker run --name pygile-dev-container -p 8888:8888 -v %cd%:/workspace/pygile iamvuon/pygile_base
 ```
 
-## 4. How to start the existing PyGILE container
+## How to start the existing PyGILE container?
 
 ```bash
 docker start pygile-container
@@ -81,7 +88,7 @@ Or for development container:
 docker start pygile-dev-container
 ```
 
-## 5. How to inspect the PyGILE container
+## How to inspect the PyGILE container?
 
 To see what containers are running:
 
@@ -124,7 +131,7 @@ Run PyGILE interactively:
 docker run -it iamvuon/pygile_base bash
 ```
 
-## 6. How to manage PyGILE containers and images
+## How to manage PyGILE containers and images?
 
 To see all images:
 
@@ -152,9 +159,3 @@ docker rmi pygile-app
 docker rmi iamvuon/pygile_base
 ```
 
-## Quick Start for PyGILE Development
-
-1. Pull the image: `docker pull iamvuon/pygile_base`
-2. Navigate to your PyGILE project directory
-3. Run with volume mounting: `docker run --name pygile-dev -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base`
-4. Access Jupyter at: http://localhost:8888
