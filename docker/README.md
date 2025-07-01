@@ -54,11 +54,37 @@ docker run --name pygile-container iamvuon/pygile_base
 
 ## How to connect to your PyGILE repo and run Jupyter?
 
-First clone your PyGILE repository:
+## Installing Git
+
+### Windows
+1. Download Git from [git-scm.com](https://git-scm.com/download/win)
+2. Run the installer and follow the setup wizard
+3. Choose "Git from the command line and also from 3rd-party software"
+4. Use the default options for other settings
+
+### macOS
+```bash
+# Using Homebrew (recommended)
+brew install git
+
+# Or using Xcode Command Line Tools
+xcode-select --install
+```
+
+### Linux
+
+**Ubuntu/Debian:**
+```bash
+sudo apt update
+sudo apt install git
+```
+
+Once Git is installed, clone this repository:
+
 
 ```bash
-git clone https://github.com/your-username/PyGILE.git
-cd PyGILE
+git clone https://github.com/Geoinformatics-Lab/PyGILE.git
+cd PyGILE-main
 ```
 
 Complete command with volume mounting for PyGILE development:
