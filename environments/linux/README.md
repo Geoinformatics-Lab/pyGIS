@@ -1,106 +1,85 @@
 # PyGILE Linux Installation Guide
 
-## 1. Download PyGILE Repository
+Complete Python environment for geospatial analysis
 
-Go to https://github.com/Geoinformatics-Lab/PyGILE
+## 1. Download and Extract Repository
 
-Click green Code button and Download ZIP
+Go to: https://github.com/Geoinformatics-Lab/pyGILE
 
-Extract to home directory to get PyGILE-main folder
+Click green "Code" button -> "Download ZIP"
 
-## 2. Download and Install Miniforge3
+Extract the ZIP file to your home directory
 
-Open Terminal:
+You will get a folder named "pyGILE-main"
+
+## 2. Download Miniforge3
+
+Open Terminal (Ctrl+Alt+T) and run:
 
 ```bash
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 ```
 
-```bash
-chmod +x Miniforge3-Linux-x86_64.sh
-```
+## 3. Install Miniforge3
 
 ```bash
+chmod +x Miniforge3-Linux-x86_64.sh
 ./Miniforge3-Linux-x86_64.sh
 ```
 
 During installation:
-- Press Enter to continue
-- Press Enter after reading license
-- Type yes and press Enter
-- Press Enter for default location
-- **WARNING: TYPE NO WHEN ASKED ABOUT SHELL PROFILE**
+- Press Enter to continue reading license
+- Press Enter again after reading license  
+- Type "yes" and press Enter to accept license
+- Press Enter to accept default installation location
+- **🚨⚠️🛑 CRITICAL: Type NO when asked about shell profile 🛑⚠️🚨**
 
-## 3. Initialize Miniforge3
+Installation will complete with "Thank you for installing Miniforge3!" message.
+
+## 4. Initialize Miniforge3 Manually
+
+Since you chose "no" during installation, run these commands:
 
 ```bash
 eval "$(/home/$USER/miniforge3/bin/conda shell.bash hook)"
-```
-
-```bash
 conda init
-```
-
-```bash
 source ~/.bashrc
 ```
 
-Test installation:
-
+Test if mamba is working:
 ```bash
 mamba --version
 ```
 
-## 4. Create PyGILE Environment
+You should see a version number like "mamba 2.1.1"
 
-Navigate to setup folder:
+## 5. Create PyGILE Environment
+
+Navigate to the Linux setup folder:
 
 ```bash
-cd PyGILE-main/environments/linux
+cd pyGILE-main/environments/linux
 ```
 
-Choose one method:
-
-Method A - Using script:
+Run the installation script:
 ```bash
 chmod +x install_pygile_linux.sh
 ./install_pygile_linux.sh
 ```
 
-Method B - Using YAML:
-```bash
-mamba env create -f environment.yaml
-```
+## 6. Activate Environment
 
-## 5. Activate Environment
-
-```bash
-conda deactivate
-```
-
+First, initialize the current bash shell:
 ```bash
 eval "$(mamba shell hook --shell bash)"
 ```
 
+Then activate:
 ```bash
 mamba activate pygile_base
 ```
 
-Install kernel for Jupyter:
-
-```bash
-conda install ipykernel
-```
-
-```bash
-python -m ipykernel install --user --name pygile_base --display-name "Python (pygile_base)"
-```
-
-## 6. Start Jupyter Lab
-
-```bash
-jupyter lab
-```
+Your prompt should now show (pygile_base) at the beginning of each line.
 
 ## 7. Test Installation
 
@@ -108,20 +87,16 @@ jupyter lab
 python -c 'import geopandas, rasterio, geowombat, jupyter; print("All packages working!")'
 ```
 
-Should show: All packages working!
+You should see: "All packages working!"
 
-## Quick Start After Setup
+**SUCCESS!**
 
-```bash
-mamba activate pygile_base
-```
+## Daily Usage
 
-```bash
-cd PyGILE-main
-```
+Every time you want to use PyGILE:
 
-```bash
-jupyter lab
-```
+1. Open Terminal (Ctrl+Alt+T)
+2. `mamba activate pygile_base`
+3. `jupyter lab`
 
-Open any notebook in pyGILE notebooks folder and start learning
+Navigate to pyGILE-main folder and open notebooks in pyGILE_notebooks folder

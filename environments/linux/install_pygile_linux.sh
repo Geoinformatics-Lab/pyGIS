@@ -53,24 +53,36 @@ if ! $INSTALLER create -n pygile_base -c conda-forge python=3.10 -y >> "$LOGFILE
     exit 1
 fi
 
-# Core packages
-core_packages=(
+# System dependencies
+system_packages=(
     "gdal=3.6.2"
     "proj=9.1.0"
     "geos=3.11.1"
     "libspatialindex"
     "boost-cpp"
+)
+
+# Core scientific stack
+scientific_packages=(
     "numpy=1.24.3"
     "pandas"
     "scipy"
     "matplotlib"
     "seaborn"
     "scikit-learn"
+)
+
+# Geospatial core
+geospatial_core_packages=(
     "geopandas"
     "rasterio"
     "shapely"
     "pyproj"
     "fiona"
+)
+
+# Geospatial extras
+geospatial_extra_packages=(
     "contextily"
     "folium"
     "osmnx"
@@ -78,38 +90,31 @@ core_packages=(
     "mapclassify"
     "geoplot"
     "geowombat=2.1.22"
-    "dask-geopandas=0.4.3"
-    "cenpy=1.0.1"
-    "census=0.8.24"
-    "us=3.2.0"
+)
+
+# Data formats
+data_format_packages=(
     "h5py"
     "netcdf4"
     "h5netcdf"
     "xarray"
+)
+
+# Visualization
+visualization_packages=(
     "plotly"
+)
+
+# Jupyter
+jupyter_packages=(
     "jupyter"
     "jupyterlab=4.4.3"
     "ipywidgets"
 )
 
-# Additional packages
-additional_packages=(
-    "bokeh"
-    "scikit-image"
-    "imageio-ffmpeg"
-    "tifffile"
-    "zarr"
-    "rio-cogeo"
-    "rioxarray"
-    "ipyleaflet"
-    "leafmap"
-    "geemap"
-    "localtileserver"
-    "pystac"
-    "stackstac"
-    "planetary-computer"
-    "palettable"
-    "owslib"
+# Pip dependencies
+pip_dependencies=(
+    "pip"
 )
 
 # Pip packages
@@ -118,33 +123,62 @@ pip_packages=(
     "numpy-groupies==0.11.2"
     "jupyter-book==1.0.4"
     "geojson==3.2.0"
+    "dask-geopandas==0.4.3"
     "pykrige==1.7.2"
+    "cenpy==1.0.1"
+    "census==0.8.24"
+    "us==3.2.0"
     "sklearn-xarray==0.4.0"
-    "sphinx"
-    "sphinx-sitemap"
-    "sphinxcontrib.bibtex"
-    "sphinx-inline-tabs"
-    "pydata-sphinx-theme"
-    "ghp-import"
 )
 
-echo "Installing core packages"
-for package in "${core_packages[@]}"; do
+echo "Installing system dependencies"
+for package in "${system_packages[@]}"; do
     install_package "$package"
 done
 
-echo "Installing additional packages"
-for package in "${additional_packages[@]}"; do
+echo "Installing core scientific stack"
+for package in "${scientific_packages[@]}"; do
+    install_package "$package"
+done
+
+echo "Installing geospatial core packages"
+for package in "${geospatial_core_packages[@]}"; do
+    install_package "$package"
+done
+
+echo "Installing geospatial extras"
+for package in "${geospatial_extra_packages[@]}"; do
+    install_package "$package"
+done
+
+echo "Installing data format packages"
+for package in "${data_format_packages[@]}"; do
+    install_package "$package"
+done
+
+echo "Installing visualization packages"
+for package in "${visualization_packages[@]}"; do
+    install_package "$package"
+done
+
+echo "Installing Jupyter packages"
+for package in "${jupyter_packages[@]}"; do
+    install_package "$package"
+done
+
+echo "Installing pip dependencies"
+for package in "${pip_dependencies[@]}"; do
     install_package "$package"
 done
 
 # Install pip packages
+echo "Installing pip packages"
 for package in "${pip_packages[@]}"; do
     install_pip_package "$package"
 done
 
 # Summary
-TOTAL=$((${#core_packages[@]} + ${#additional_packages[@]} + ${#pip_packages[@]}))
+TOTAL=$((${#system_packages[@]} + ${#scientific_packages[@]} + ${#geospatial_core_packages[@]} + ${#geospatial_extra_packages[@]} + ${#data_format_packages[@]} + ${#visualization_packages[@]} + ${#jupyter_packages[@]} + ${#pip_dependencies[@]} + ${#pip_packages[@]}))
 echo "Installation complete: $SUCCESS_COUNT/$TOTAL packages installed"
 echo "Failed packages: $ERROR_COUNT (see $ERRORLOG)"
 

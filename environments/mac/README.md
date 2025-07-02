@@ -45,31 +45,27 @@ During installation:
 - Press Enter after reading license
 - Type yes and press Enter
 - Press Enter for default location
-- **WARNING: TYPE NO WHEN ASKED ABOUT SHELL PROFILE**
+- **🚨⚠️🛑 CRITICAL: Type NO when asked about shell profile 🛑⚠️🚨**
 
-## 4. Initialize Miniforge3
+## 4. Initialize Miniforge3 Manually
 
 ```bash
 eval "$(/Users/$USER/miniforge3/bin/conda shell.bash hook)"
-```
-
-```bash
 conda init
 ```
 
-For zsh (default on newer macOS):
+For zsh users (default on newer macOS):
 ```bash
 conda init zsh
 exec zsh -l
 ```
 
-For bash:
+For bash users:
 ```bash
 conda init bash
 ```
 
 Test installation:
-
 ```bash
 mamba --version
 ```
@@ -82,33 +78,13 @@ Navigate to setup folder:
 cd pyGILE-main/environments/mac
 ```
 
-Choose one method:
-
-Method A - Using script:
+Run the installation script:
 ```bash
 chmod +x install_pygile_macos.sh
 ./install_pygile_macos.sh
 ```
 
-Method B - Using YAML:
-```bash
-mamba env create -f environment.yaml
-```
-
 ## 6. Activate Environment
-
-```bash
-conda deactivate
-```
-
-```bash
-eval "$(mamba shell hook --shell bash)"
-```
-
-For zsh users:
-```bash
-eval "$(mamba shell hook --shell zsh)"
-```
 
 ```bash
 mamba activate pygile_base
@@ -126,19 +102,7 @@ Should show: All packages working!
 
 ```bash
 mamba activate pygile_base
-```
-
-```bash
 jupyter lab
 ```
 
 Navigate to pyGILE-main folder and open notebooks in pyGILE_notebooks folder
-
-## macOS Notes
-
-For Apple Silicon Macs: Use ARM64 version
-
-If needed, install Xcode Command Line Tools:
-```bash
-xcode-select --install
-```

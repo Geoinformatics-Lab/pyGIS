@@ -7,6 +7,49 @@
 3. Run with volume mounting: `docker run --name pygile-dev -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base`
 4. Access Jupyter at: http://localhost:8888
 
+## Platform-Specific Instructions
+
+### **Windows**
+
+```bash
+# Pull the image
+docker pull iamvuon/pygile_base
+
+# Run with volume mounting (PowerShell)
+docker run --name pygile-dev-container -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base
+
+# Run with volume mounting (Command Prompt)
+docker run --name pygile-dev-container -p 8888:8888 -v %cd%:/workspace/pygile iamvuon/pygile_base
+```
+
+### **Linux**
+
+```bash
+# Pull the image (try ARM64 first, fallback to amd64 if needed)
+docker pull --platform linux/arm64 iamvuon/pygile_base || docker pull --platform linux/amd64 iamvuon/pygile_base
+
+# Run with volume mounting
+docker run --name pygile-dev-container -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base
+```
+
+### **macOS (Apple Silicon M1/M2/M3)**
+
+**IMPORTANT**: Always specify platform explicitly to avoid architecture issues.
+
+```bash
+# Pull with explicit platform
+docker pull --platform linux/amd64 iamvuon/pygile_base
+
+# Run with explicit platform to avoid compatibility issues
+docker run --platform linux/amd64 --name pygile-dev-container -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base
+```
+
+**Required Setup for macOS**:
+1. Open Docker Desktop Settings
+2. Go to "Features in Development" 
+3. Check "Use Rosetta for x86/amd64 emulation on Apple Silicon"
+4. Apply & Restart
+
 ## How to build and run the PyGILE Docker container?
 
 Open Docker Desktop and open PowerShell in your project directory.
@@ -81,26 +124,9 @@ sudo apt install git
 
 Once Git is installed, clone this repository:
 
-
 ```bash
 git clone https://github.com/Geoinformatics-Lab/PyGILE.git
 cd PyGILE-main
-```
-
-Complete command with volume mounting for PyGILE development:
-
-```bash
-docker run --name pygile-dev-container -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base
-```
-
-For Windows PowerShell:
-```bash
-docker run --name pygile-dev-container -p 8888:8888 -v ${PWD}:/workspace/pygile iamvuon/pygile_base
-```
-
-For Windows Command Prompt:
-```bash
-docker run --name pygile-dev-container -p 8888:8888 -v %cd%:/workspace/pygile iamvuon/pygile_base
 ```
 
 ## How to start the existing PyGILE container?
@@ -184,4 +210,3 @@ docker rmi pygile-app
 # or
 docker rmi iamvuon/pygile_base
 ```
-
