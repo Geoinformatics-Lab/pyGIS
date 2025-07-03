@@ -1,5 +1,18 @@
 # Docker Commands Guide for PyGILE Project
 
+# First install Docker Desktop
+#### Windows
+- **Docker Desktop** (recommended) - Download from [Docker's official site](https://docs.docker.com/desktop/)
+
+#### macOS
+- **Homebrew** - `brew install --cask docker` (requires [Homebrew](https://brew.sh/) installed first)
+
+#### Linux
+- **Package Manager** - `sudo apt install docker.io` (Ubuntu/Debian)
+
+#### Alternative for All Platforms
+- **Official Installation Script** - `curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh`
+
 ## Quick Start for PyGILE Development
 
 1. Pull the image: `docker pull iamvuon/pygile_base`
