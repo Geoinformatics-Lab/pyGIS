@@ -1,8 +1,0 @@
-import geopandas
-import contextily as ctx
-cities = geopandas.read_file(geopandas.datasets.get_path('naturalearth_cities'))
-cities = cities[cities.name == 'Washington, D.C.']
-cities = cities.to_crs(epsg=3857) # project to webmercator
-
-ax = cities.plot(figsize=(10, 10), alpha=0.5, edgecolor='k')
-ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron,zoom = 6, reset_extent = True)
